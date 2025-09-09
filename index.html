@@ -15,10 +15,30 @@
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Mobile Popup -->
+    <div id="mobilePopup" class="mobile-popup d-none">
+        <div class="mobile-popup-content">
+            <div class="mobile-popup-header">
+                <i class="fas fa-desktop me-2"></i>
+                <span>Desktop Experience</span>
+                <button type="button" class="btn-close" id="closeMobilePopup" aria-label="Close"></button>
+            </div>
+            <div class="mobile-popup-body">
+                <p>Our website works better on desktop screens for the best experience.</p>
+                <div class="mobile-popup-actions">
+                    <button type="button" class="btn btn-primary btn-sm" id="okMobilePopup">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Topbar -->
     <div class="topbar text-light py-2 small">
         <div class="container d-flex align-items-center justify-content-between">
@@ -46,64 +66,81 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" data-i18n="nav.home">Home</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Tours</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-i18n="nav.tours">Tours</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#popular-tours">Cappadocia Green Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Cappadocia Red Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Private Cappadocia Tours</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Salt Lake Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Daily Pamukkale Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Daily Ephesus Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Perge Aspendos Side Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Antalya City Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Demre Myra Kekova Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Pamukkale Tour from Antalya</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_green">Cappadocia Green Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_red">Cappadocia Red Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_private">Private Cappadocia Tours</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_saltlake">Salt Lake Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_pamukkale">Daily Pamukkale Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_ephesus">Daily Ephesus Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_perge">Perge Aspendos Side Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_antalya">Antalya City Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_demre">Demre Myra Kekova Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.tours_pamukkale_from_antalya">Pamukkale Tour from Antalya</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Balloon Flights</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-i18n="nav.balloons">Balloon Flights</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#popular-tours">Standard Flight</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Comfort Flight</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Private Flight</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.balloons_standard">Standard Flight</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.balloons_comfort">Comfort Flight</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.balloons_private">Private Flight</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Destinations</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-i18n="nav.destinations">Destinations</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#destinations">Goreme Open Air Museum</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Kaymakli Underground City</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Derinkuyu Underground City</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Ihlara Valley</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Soganli Valley</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Selime Monastery</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Pasabag</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Uchisar Castle</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Cavusin Village</a></li>
-                            <li><a class="dropdown-item" href="#destinations">Zelve Open Air Museum</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_goreme">Goreme Open Air Museum</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_kaymakli">Kaymakli Underground City</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_derinkuyu">Derinkuyu Underground City</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_ihlara">Ihlara Valley</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_soganli">Soganli Valley</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_selime">Selime Monastery</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_pasabag">Pasabag</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_uchisar">Uchisar Castle</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_cavusin">Cavusin Village</a></li>
+                            <li><a class="dropdown-item" href="#destinations" data-i18n="nav.dest_zelve">Zelve Open Air Museum</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Activities & Services</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-i18n="nav.activities">Activities & Services</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#popular-tours">Airport Transfers</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">ATV Tours</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Horse-Riding Tours</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Jeep Safari</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Turkish Night Shows</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Whirling Dervishes</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Camel Riding Tour</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Classic Car Tours</a></li>
-                            <li><a class="dropdown-item" href="#popular-tours">Cappadocia Photoshoot</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_transfers">Airport Transfers</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_atv">ATV Tours</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_horse">Horse-Riding Tours</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_jeep">Jeep Safari</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_night">Turkish Night Shows</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_dervish">Whirling Dervishes</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_camel">Camel Riding Tour</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_classiccar">Classic Car Tours</a></li>
+                            <li><a class="dropdown-item" href="#popular-tours" data-i18n="nav.act_photoshoot">Cappadocia Photoshoot</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
-                    <li class="nav-item ms-2">
-                        <button class="btn btn-outline-primary icon-only" data-bs-toggle="offcanvas" data-bs-target="#offcanvasContact" aria-label="Open contact panel">
-                            <i class="fa-solid fa-bars"></i>
+                    <li class="nav-item"><a class="nav-link" href="#footer" data-i18n="nav.contact">Contact</a></li>
+                    <li class="nav-item dropdown">
+                        <button id="langSelectBtn" class="btn btn-outline-primary icon-only dropdown-toggle" aria-expanded="false" aria-label="Language selector">
+                            <img id="langFlagImg" src="" alt="language" width="20" height="14">
                         </button>
+                        <ul class="dropdown-menu dropdown-menu-end p-2 lang-menu">
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="en" aria-label="English"><img src="https://flagcdn.com/24x18/gb.png" width="24" height="18" alt="English"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="tr" aria-label="Türkçe"><img src="https://flagcdn.com/24x18/tr.png" width="24" height="18" alt="Türkçe"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="fr" aria-label="Français"><img src="https://flagcdn.com/24x18/fr.png" width="24" height="18" alt="Français"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="de" aria-label="Deutsch"><img src="https://flagcdn.com/24x18/de.png" width="24" height="18" alt="Deutsch"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="es" aria-label="Español"><img src="https://flagcdn.com/24x18/es.png" width="24" height="18" alt="Español"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="pt" aria-label="Português"><img src="https://flagcdn.com/24x18/pt.png" width="24" height="18" alt="Português"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="it" aria-label="Italiano"><img src="https://flagcdn.com/24x18/it.png" width="24" height="18" alt="Italiano"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="ru" aria-label="Русский"><img src="https://flagcdn.com/24x18/ru.png" width="24" height="18" alt="Русский"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="uk" aria-label="Українська"><img src="https://flagcdn.com/24x18/ua.png" width="24" height="18" alt="Українська"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="zh" aria-label="中文"><img src="https://flagcdn.com/24x18/cn.png" width="24" height="18" alt="中文"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="ja" aria-label="日本語"><img src="https://flagcdn.com/24x18/jp.png" width="24" height="18" alt="日本語"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="ko" aria-label="한국어"><img src="https://flagcdn.com/24x18/kr.png" width="24" height="18" alt="한국어"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="th" aria-label="ไทย"><img src="https://flagcdn.com/24x18/th.png" width="24" height="18" alt="ไทย"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="id" aria-label="Bahasa Indonesia"><img src="https://flagcdn.com/24x18/id.png" width="24" height="18" alt="Bahasa Indonesia"></a></li>
+                            <li><a class="dropdown-item lang-flag" href="#" data-lang="pl" aria-label="Polski"><img src="https://flagcdn.com/24x18/pl.png" width="24" height="18" alt="Polski"></a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -131,12 +168,12 @@
     <section class="hero d-flex align-items-center text-white">
         <div class="container">
             <div class="col-12 col-lg-8">
-                <span class="badge bg-primary-subtle text-dark mb-3">Enjoy Cappadocia with</span>
+                <span class="badge bg-primary-subtle text-dark mb-3" data-i18n="hero.kicker">Enjoy Cappadocia with</span>
                 <h1 class="display-4 fw-bold lh-1">Capahenas Travel</h1>
-                <p class="lead mt-3 mb-4">We provide our guests an authentic Cappadocia experience that they can remember for the rest of their lives!</p>
+                <p class="lead mt-3 mb-4" data-i18n="hero.lead">We provide our guests an authentic Cappadocia experience that they can remember for the rest of their lives!</p>
                 <div class="d-flex gap-2">
-                    <a href="#popular-tours" class="btn btn-primary btn-lg">Explore Tours</a>
-                    <a href="#video" class="btn btn-outline-light btn-lg">Balloon Flights</a>
+                    <a href="#popular-tours" class="btn btn-primary btn-lg" data-i18n="hero.ctaExplore">Explore Tours</a>
+                    <a href="#video" class="btn btn-outline-light btn-lg" data-i18n="hero.ctaBalloons">Balloon Flights</a>
                 </div>
             </div>
         </div>
@@ -144,15 +181,17 @@
     </section>
 
     <!-- Welcome Section -->
-    <section class="py-5 py-lg-6 section-alt" id="welcome">
+    <section class="py-5 py-lg-6 section-alt position-relative" id="welcome">
+        <!--BURASI-->
+        <div class="section-bg-horses" aria-hidden="true"></div>
         <div class="container">
             <div class="row g-4 align-items-center">
                 <div class="col-lg-7">
-                    <span class="section-kicker">Welcome to the magical land of</span>
-                    <h2 class="display-6 fw-bold mb-3"><span class="text-primary">beautiful horses</span></h2>
-                    <p><strong>Cappadocia</strong> is an ancient district in east-central Anatolia... boundaries have changed over time. Cappadocia's landscape is made up of dramatic areas of soft volcano rock that have been shaped by erosion into towers and cones, valleys and caves.</p>
-                    <p>Amazing topography is matched only by the fascinating human history. The region's soft stones have been used by people for centuries to find shelter underground, leaving behind stunning cavern architecture.</p>
-                    <p>As <strong>Capahenas Travel</strong>, we will be delighted to help you plan every step of your travel to Cappadocia including flight tickets, airport transfers, hotel accommodation, tours and much more.</p>
+                    <span class="section-kicker" data-i18n="welcome.kicker">Welcome to the magical land of</span>
+                    <h2 class="display-6 fw-bold mb-3"><span class="text-primary" data-i18n="welcome.title">beautiful horses</span></h2>
+                    <p data-i18n="welcome.p1"><strong>Cappadocia</strong> is an ancient district in east-central Anatolia... boundaries have changed over time. Cappadocia's landscape is made up of dramatic areas of soft volcano rock that have been shaped by erosion into towers and cones, valleys and caves.</p>
+                    <p data-i18n="welcome.p2">Amazing topography is matched only by the fascinating human history. The region's soft stones have been used by people for centuries to find shelter underground, leaving behind stunning cavern architecture.</p>
+                    <p data-i18n="welcome.p3">As <strong>Capahenas Travel</strong>, we will be delighted to help you plan every step of your travel to Cappadocia including flight tickets, airport transfers, hotel accommodation, tours and much more.</p>
                 </div>
                 <div class="col-lg-5">
                     <div class="welcome-image position-relative">
@@ -166,107 +205,129 @@
         </div>
     </section>
 
+    <!-- All Türkiye Experiences -->
+    <section class="py-5 experiences-wrapper" id="experiences">
+        <div class="container-fluid px-0">
+            <div class="text-center mb-4 reveal-up">
+                <span class="section-kicker" data-i18n="experiences.kicker">Experiences</span>
+                <h2 class="fw-bold display-6" data-i18n="experiences.title">All Türkiye Experiences</h2>
+            </div>
+            <div class="slick-experiences" data-reveal-group>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Cappadocia Green Tour" loading="lazy" src="https://picsum.photos/id/1018/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_green">Cappadocia Green Tour</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Cappadocia Red Tour" loading="lazy" src="https://picsum.photos/id/1025/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_red">Cappadocia Red Tour</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Private Cappadocia Tours" loading="lazy" src="https://picsum.photos/id/1035/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_private">Private Cappadocia Tours</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Salt Lake Tour" loading="lazy" src="https://picsum.photos/id/1043/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_saltlake">Salt Lake Tour</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Daily Pamukkale Tour" loading="lazy" src="https://picsum.photos/id/1050/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_pamukkale">Daily Pamukkale Tour</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Daily Ephesus Tour" loading="lazy" src="https://picsum.photos/id/1069/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_ephesus">Daily Ephesus Tour</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Perge Aspendos Side Tour" loading="lazy" src="https://picsum.photos/id/1074/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_perge">Perge Aspendos Side Tour</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Antalya City Tour" loading="lazy" src="https://picsum.photos/id/1084/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_antalya">Antalya City Tour</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Demre Myra Kekova Tour" loading="lazy" src="https://picsum.photos/id/1080/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_demre">Demre Myra Kekova Tour</span></div></div></div></a></div></div></div>
+                <div><div class="item-layout"><div class="item"><a href="#popular-tours"><div class="slide-card all-shadow"><div class="image slide-card-image image-loaded"><img class="image-node" alt="Pamukkale Tour from Antalya" loading="lazy" src="https://picsum.photos/id/109/800/600"></div><div class="slide-card-body horizontal"><div class="slide-card-body-content"><span class="slide-card-body-content-title" data-i18n="nav.tours_pamukkale_from_antalya">Pamukkale Tour from Antalya</span></div></div></div></a></div></div></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Popular Tours -->
     <section class="py-5 section-alt position-relative" id="popular-tours">
         <div class="container position-relative">
             <div class="text-center mb-4">
-                <span class="section-kicker">Popular</span>
-                <h2 class="fw-bold display-6">Trending Tours</h2>
+                <span class="section-kicker" data-i18n="popular.kicker">Popular</span>
+                <h2 class="fw-bold display-6" data-i18n="popular.title">Trending Tours</h2>
             </div>
             <div class="row g-4">
                 <!-- 6 cards -->
                 <!-- Repeatable Card Template -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 reveal-up">
                     <div class="card tour-card h-100">
                         <div class="position-relative">
                             <img src="https://www.capahenastravel.com/images/balloon.jpg" class="card-img-top" alt="Standard Hot Air Balloon">
                             <span class="price-badge">$65</span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Standard Hot Air Balloon Flight</h5>
+                            <h5 class="card-title" data-i18n="cards.standard_balloon">Standard Hot Air Balloon Flight</h5>
                             <ul class="list-inline text-muted small mb-3">
                                 <li class="list-inline-item"><i class="fa-solid fa-location-dot me-1"></i>Goreme</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-clock me-1"></i>3 hrs</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-calendar me-1"></i>05:00</li>
                                 <li class="list-inline-item"><i class="fa-solid fa-user-group me-1"></i>Max 16</li>
                             </ul>
-                            <a href="#" class="btn btn-primary w-100">Book Now</a>
+                            <a href="#" class="btn btn-primary w-100" data-i18n="common.book_now">Book Now</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 reveal-up">
                     <div class="card tour-card h-100">
                         <div class="position-relative">
                             <img src="https://www.capahenastravel.com/images/red.jpg" class="card-img-top" alt="Red Tour">
                             <span class="price-badge">$55</span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Red Tour (North) Cappadocia Tour</h5>
+                            <h5 class="card-title" data-i18n="cards.red_tour">Red Tour (North) Cappadocia Tour</h5>
                             <ul class="list-inline text-muted small mb-3">
                                 <li class="list-inline-item"><i class="fa-solid fa-location-dot me-1"></i>Uchisar</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-clock me-1"></i>7 hrs</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-calendar me-1"></i>09:30</li>
                                 <li class="list-inline-item"><i class="fa-solid fa-user-group me-1"></i>Max 12</li>
                             </ul>
-                            <a href="#" class="btn btn-primary w-100">Book Now</a>
+                            <a href="#" class="btn btn-primary w-100" data-i18n="common.book_now">Book Now</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 reveal-up">
                     <div class="card tour-card h-100">
                         <div class="position-relative">
                             <img src="https://www.capahenastravel.com/images/ihlara.jpg" class="card-img-top" alt="Green Tour">
                             <span class="price-badge">$60</span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Green Tour (South) Cappadocia Tour</h5>
+                            <h5 class="card-title" data-i18n="cards.green_tour">Green Tour (South) Cappadocia Tour</h5>
                             <ul class="list-inline text-muted small mb-3">
                                 <li class="list-inline-item"><i class="fa-solid fa-location-dot me-1"></i>Derinkuyu</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-clock me-1"></i>8 hrs</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-calendar me-1"></i>09:30</li>
                                 <li class="list-inline-item"><i class="fa-solid fa-user-group me-1"></i>Max 12</li>
                             </ul>
-                            <a href="#" class="btn btn-primary w-100">Book Now</a>
+                            <a href="#" class="btn btn-primary w-100" data-i18n="common.book_now">Book Now</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 reveal-up">
                     <div class="card tour-card h-100">
                         <div class="position-relative">
                             <img src="https://www.capahenastravel.com/images/quad.jpg" class="card-img-top" alt="ATV Tour">
                             <span class="price-badge">$35</span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">ATV Safari Sunset Tour</h5>
+                            <h5 class="card-title" data-i18n="cards.atv">ATV Safari Sunset Tour</h5>
                             <ul class="list-inline text-muted small mb-3">
                                 <li class="list-inline-item"><i class="fa-solid fa-location-dot me-1"></i>Rose Valley</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-clock me-1"></i>2 hrs</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-calendar me-1"></i>17:00</li>
                                 <li class="list-inline-item"><i class="fa-solid fa-user-group me-1"></i>Max 20</li>
                             </ul>
-                            <a href="#" class="btn btn-primary w-100">Book Now</a>
+                            <a href="#" class="btn btn-primary w-100" data-i18n="common.book_now">Book Now</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 reveal-up">
                     <div class="card tour-card h-100">
                         <div class="position-relative">
                             <img src="https://www.capahenastravel.com/images/pasabag.jpg" class="card-img-top" alt="Private Tours">
                             <span class="price-badge">$40</span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">1-2-3 Day Private Cappadocia Tours</h5>
+                            <h5 class="card-title" data-i18n="cards.private_tour">1-2-3 Day Private Cappadocia Tours</h5>
                             <ul class="list-inline text-muted small mb-3">
                                 <li class="list-inline-item"><i class="fa-solid fa-location-dot me-1"></i>Love Valley</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-clock me-1"></i>2 hrs</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-calendar me-1"></i>10:00</li>
                                 <li class="list-inline-item"><i class="fa-solid fa-user-group me-1"></i>Max 10</li>
                             </ul>
-                            <a href="#" class="btn btn-primary w-100">Book Now</a>
+                            <a href="#" class="btn btn-primary w-100" data-i18n="common.book_now">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -278,14 +339,14 @@
                             <span class="price-badge">$50</span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Comfort Hot Air Balloon Flight</h5>
+                            <h5 class="card-title" data-i18n="cards.comfort_balloon">Comfort Hot Air Balloon Flight</h5>
                             <ul class="list-inline text-muted small mb-3">
                                 <li class="list-inline-item"><i class="fa-solid fa-location-dot me-1"></i>Ihlara</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-clock me-1"></i>9 hrs</li>
                                 <li class="list-inline-item"><i class="fa-regular fa-calendar me-1"></i>09:00</li>
                                 <li class="list-inline-item"><i class="fa-solid fa-user-group me-1"></i>Max 12</li>
                             </ul>
-                            <a href="#" class="btn btn-primary w-100">Book Now</a>
+                            <a href="#" class="btn btn-primary w-100" data-i18n="common.book_now">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -303,21 +364,23 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <h3 class="fw-bold">Sunrise Hot Air Balloon Ride</h3>
-                    <p class="text-muted">Experience the magical sunrise over Cappadocia's otherworldly landscape from a hot air balloon. Safe, unforgettable and absolutely breathtaking.</p>
-                    <a href="#" class="btn btn-primary btn-lg">Book Now</a>
+                    <h3 class="fw-bold" data-i18n="video.title">Sunrise Hot Air Balloon Ride</h3>
+                    <p class="text-muted" data-i18n="video.lead">Experience the magical sunrise over Cappadocia's otherworldly landscape from a hot air balloon. Safe, unforgettable and absolutely breathtaking.</p>
+                    <a href="#" class="btn btn-primary btn-lg" data-i18n="common.book_now">Book Now</a>
                 </div>
             </div>
         </div>
     </section>
 
+    
+
     <!-- Destinations Carousel -->
     <section class="py-5 section-alt position-relative" id="destinations">
         <div class="container">
             <div class="text-center mb-4">
-                <span class="section-kicker">Destinations</span>
-                <h2 class="fw-bold display-6">Most Popular Places in Cappadocia</h2>
-                <p class="text-muted">Below are the most popular places visited by people in Cappadocia:</p>
+                <span class="section-kicker" data-i18n="destinations.kicker">Destinations</span>
+                <h2 class="fw-bold display-6" data-i18n="destinations.title">Most Popular Places in Cappadocia</h2>
+                <p class="text-muted" data-i18n="destinations.lead">Below are the most popular places visited by people in Cappadocia:</p>
             </div>
 
             <div class="three-item-carousel owl-carousel owl-theme">
@@ -328,7 +391,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <h3>Goreme Open Air Museum</h3>
+                                        <h3 data-i18n="destinations.goreme">Goreme Open Air Museum</h3>
                                     </div>
                                 </div>
                             </div>
@@ -342,7 +405,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <h3>Derinkuyu Underground City</h3>
+                                        <h3 data-i18n="destinations.derinkuyu">Derinkuyu Underground City</h3>
                                     </div>
                                 </div>
                             </div>
@@ -356,7 +419,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <h3>Ihlara Valley</h3>
+                                        <h3 data-i18n="destinations.ihlara">Ihlara Valley</h3>
                                     </div>
                                 </div>
                             </div>
@@ -370,7 +433,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <h3>Zelve Open Air Museum</h3>
+                                        <h3 data-i18n="destinations.zelve">Zelve Open Air Museum</h3>
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +447,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <h3>Selime Monastery</h3>
+                                        <h3 data-i18n="destinations.selime">Selime Monastery</h3>
                                     </div>
                                 </div>
                             </div>
@@ -398,7 +461,7 @@
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
-                                        <h3>Pasabag Valley</h3>
+                                        <h3 data-i18n="destinations.pasabag">Pasabag Valley</h3>
                                     </div>
                                 </div>
                             </div>
@@ -415,10 +478,10 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4">
                     <h5 class="fw-bold mb-3">Capahenas Travel</h5>
-                    <p>Authentic Cappadocia experiences: tours, balloon flights, destinations and activities.</p>
+                    <p data-i18n="footer.about">Authentic Cappadocia experiences: tours, balloon flights, destinations and activities.</p>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <h6 class="fw-bold mb-3">Contact</h6>
+                    <h6 class="fw-bold mb-3" data-i18n="footer.contact">Contact</h6>
                     <ul class="list-unstyled small">
                         <li><i class="fa-solid fa-phone me-2"></i><a class="text-decoration-none text-light" href="tel:+905340208677">+90-534-020-8677</a></li>
                         <li><i class="fa-regular fa-envelope me-2"></i><a class="text-decoration-none text-light" href="mailto:info@capahenastravel.com">info@capahenastravel.com</a></li>
@@ -426,7 +489,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <h6 class="fw-bold mb-3">Follow</h6>
+                    <h6 class="fw-bold mb-3" data-i18n="footer.follow">Follow</h6>
                     <div class="d-flex gap-3">
                         <a class="text-light" href="#"><i class="fab fa-facebook-f"></i></a>
                         <a class="text-light" href="#"><i class="fab fa-instagram"></i></a>
@@ -434,7 +497,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center small text-muted mt-4">© <span id="year"></span> Capahenas Travel. All rights reserved.</div>
+            <div class="text-center small text-muted mt-4">© <span id="year"></span> Capahenas Travel. <span data-i18n="footer.rights">All rights reserved.</span></div>
         </div>
     </footer>
 
@@ -447,6 +510,11 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <!-- i18n dictionaries -->
+    <script>
+      /* Preload: ensure locales folder is served with site; JSON is fetched in main.js */
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
