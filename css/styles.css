@@ -1,15 +1,10 @@
 :root {
-  --brand: #c26b3c; /* Terracotta */
-  --brand-dark: #9f5430;
-  --brand-ink: #0f172a; /* Slate 900 */
-  --brand-ink-2: #334155; /* Slate 700 */
-  --brand-bg: #f6f4f1; /* Warm paper */
+  --brand: #c29d59;
+  --brand-dark: #a37e3d;
 }
 
 body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-  color: var(--brand-ink);
-  background-color: #fff;
 }
 
 /* Slightly larger base size for overall bigger UI */
@@ -19,10 +14,6 @@ html { font-size: 17px; }
 h1, h2, h3, h4, .display-6, .display-5, .display-4 {
   font-family: "Playfair Display", Georgia, serif;
 }
-
-/* Global polish */
-* { scroll-behavior: smooth; }
-section { scroll-margin-top: 80px; }
 
 .topbar {
   background: #2b2b2b;
@@ -39,13 +30,6 @@ section { scroll-margin-top: 80px; }
   --bs-btn-active-bg: var(--brand-dark);
   --bs-btn-active-border-color: var(--brand-dark);
 }
-.btn-outline-primary{
-  --bs-btn-color: var(--brand);
-  --bs-btn-border-color: var(--brand);
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--brand);
-  --bs-btn-hover-border-color: var(--brand);
-}
 .btn.icon-only{
   padding: .45rem .6rem;
 }
@@ -53,9 +37,9 @@ section { scroll-margin-top: 80px; }
 .btn-outline-light:hover { color: #000; }
 
 .hero {
-  min-height: 100vh;
+  min-height: 74vh;
   position: relative;
-  background-image: url('../img/hero.jpg'); /* Fallback for slow networks */
+  background-image: url('https://www.capahenastravel.com/images/background/1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -65,62 +49,16 @@ section { scroll-margin-top: 80px; }
   position: absolute;
   inset: 0;
   /* Darker on the left, lighter on the right, with a subtle vertical fade */
-  background: linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.2) 70%, rgba(0,0,0,.05) 100%),
-              linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.25));
-  z-index: 1;
+  background: linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.28) 45%, rgba(0,0,0,.18) 70%, rgba(0,0,0,.08) 100%),
+              linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.25));
+  z-index: 0;
   pointer-events: none;
 }
 
 .hero .container {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
-
-/* Scroll-down arrow */
-.scroll-down {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.6);
-  background: rgba(255,255,255,.06);
-  backdrop-filter: blur(2px);
-  transition: background .2s ease, transform .2s ease;
-}
-.scroll-down:hover { background: rgba(255,255,255,.14); transform: translateX(-50%) translateY(-2px); }
-.scroll-down i { font-size: 1.1rem; }
-
-/* Hero background video */
-.hero-video {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-.hero-video iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw;
-  height: 56.25vw; /* 16:9 based on width */
-  min-width: 177.77vh; /* 16:9 based on height */
-  min-height: 100vh;
-  border: 0;
-  pointer-events: none; /* keep hero buttons clickable */
-}
-
-/* Hide topbar + navbar at top, show on scroll */
-.site-chrome { position: fixed; left: 0; right: 0; z-index: 1030; transition: transform .35s ease, opacity .35s ease; will-change: transform, opacity; }
-.site-chrome.hidden-at-top { transform: translateY(-100%); opacity: 0; }
-.topbar.site-chrome { top: 0; }
-.navbar.site-chrome { top: var(--topbar-height, 0px); }
 
 
 .section-kicker {
@@ -192,20 +130,6 @@ section { scroll-margin-top: 80px; }
   font-size: 1.15rem;
   font-weight: 600;
 }
-.tour-card{
-  border: none;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(2,6,23,.06);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.tour-card:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(2,6,23,.1);
-}
-.tour-card .card-body {
-  padding: 1.25rem 1.25rem 1.5rem;
-}
 
 /* Owl Carousel Destinations Styling */
 .destinations-block {
@@ -223,11 +147,10 @@ section { scroll-margin-top: 80px; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .5s ease, filter .3s ease;
+  transition: transform .5s ease;
 }
 .destinations-block:hover img {
   transform: scale(1.05);
-  filter: saturate(1.05) contrast(1.02);
 }
 .overlay-box {
   position: absolute;
@@ -346,7 +269,7 @@ footer .text-muted{ color: rgba(255,255,255,.75)!important; }
 /* Alternating section colors: white, then brand-neutral */
 /* Alternate only the background-color to avoid overriding background-image on hero */
 body > section:nth-of-type(odd):not(.hero){ background-color: #ffffff; }
-body > section:nth-of-type(even):not(.hero){ background-color: var(--brand-bg); }
+body > section:nth-of-type(even):not(.hero){ background-color: #f2efe9; }
 
 /* Dropdown show on hover (desktop) */
 @media (min-width: 992px){
@@ -378,42 +301,7 @@ body > section:nth-of-type(even):not(.hero){ background-color: var(--brand-bg); 
   padding: .55rem .8rem;
 }
 .navbar .dropdown-item:hover{
-  background: rgba(194,107,60,.12);
+  background: rgba(194,157,89,.12);
   color: #000;
-}
-
-/* Why Choose Us */
-.features {
-  --gap: 24px;
-}
-.feature {
-  background: #fff;
-  border-radius: 1rem;
-  padding: 1.25rem;
-  height: 100%;
-  box-shadow: 0 10px 30px rgba(2,6,23,.06);
-}
-.feature i {
-  color: var(--brand);
-}
-.feature h6 {
-  font-weight: 700;
-}
-.feature p {
-  color: var(--brand-ink-2);
-}
-
-/* CTA Band */
-.cta-band {
-  position: relative;
-  color: #fff;
-  background: linear-gradient(135deg, rgba(194,107,60,.95), rgba(15,23,42,.95)), url('../img/img2.jpg') center/cover no-repeat;
-}
-.cta-band .container { position: relative; z-index: 1; }
-.cta-band::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.3));
 }
 
