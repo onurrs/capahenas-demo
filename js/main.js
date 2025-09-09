@@ -47,6 +47,47 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
+
+  // Show navbar/topbar after user scrolls past hero
+  var topbar = document.querySelector('.topbar');
+  var navbar = document.querySelector('.navbar');
+  if (topbar && navbar) {
+    // Compute topbar height and set CSS var so navbar sits right beneath it when shown
+    function setTopbarHeightVar(){
+      var h = topbar.offsetHeight || 0;
+      document.documentElement.style.setProperty('--topbar-height', h + 'px');
+    }
+    setTopbarHeightVar();
+    window.addEventListener('resize', setTopbarHeightVar);
+
+    var lastStateHidden = true;
+    function updateChromeVisibility(){
+      var scrolled = window.scrollY || window.pageYOffset;
+      var shouldHide = scrolled <= 0; // show as soon as user scrolls down even 1px
+      if (shouldHide && !lastStateHidden){
+        topbar.classList.add('hidden-at-top');
+        navbar.classList.add('hidden-at-top');
+        lastStateHidden = true;
+      } else if (!shouldHide && lastStateHidden){
+        topbar.classList.remove('hidden-at-top');
+        navbar.classList.remove('hidden-at-top');
+        lastStateHidden = false;
+      }
+    }
+    // Initial state: hidden at top
+    topbar.classList.add('hidden-at-top');
+    navbar.classList.add('hidden-at-top');
+    updateChromeVisibility();
+    window.addEventListener('scroll', updateChromeVisibility, { passive: true });
+  }
+
+  // Smooth scroll for the scroll-down arrow (native CSS also enabled)
+  var scrollDown = document.querySelector('.scroll-down');
+  if (scrollDown) {
+    scrollDown.addEventListener('click', function(e){
+      // Let default anchor jump be smooth due to CSS scroll-behavior; prevent double behavior not necessary
+    });
+  }
 });
 
 
