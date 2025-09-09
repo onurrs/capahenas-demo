@@ -1,0 +1,15 @@
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Capahenas Travel",
+  "url": "https://www.capahenastravel.com",
+  "telephone": "+90 384 271 2155",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Isali Gaferli Avcılar mah Fatih sok No 16/A Goreme",
+    "addressLocality": "Goreme",
+    "addressRegion": "Nevsehir",
+    "addressCountry": "TR"
+  }
+}
+
