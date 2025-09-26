@@ -1,124 +1,480 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Capahenas Travel | Cappadocia Tours & Balloon Flights</title>
-    <meta name="description" content="Authentic small-group tours, hot air balloon flights, transfers and local experiences from Göreme. Book Capahenas Travel.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="canonical" href="https://www.capahenastravel.com/">
-    <meta property="og:title" content="Capahenas Travel | Cappadocia Tours & Balloon Flights">
-    <meta property="og:description" content="Authentic small-group tours, hot air balloon flights, transfers and local experiences from Göreme.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.capahenastravel.com/">
-    <meta property="og:image" content="assets/img/hero.jpg">
-    <meta name="theme-color" content="#0f172a">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="meta.title">Capahenas Travel — Cappadocia & Türkiye Tours</title>
+
+    <!-- Meta / SEO -->
+    <meta name="description" content="Capahenas Travel for Cappadocia balloon rides and curated Turkey tours." data-i18n="meta.description" data-i18n-attr="content" />
+    <meta property="og:title" content="Capahenas Travel" />
+    <meta property="og:description" content="Cappadocia balloon rides and Turkey tours." data-i18n="meta.ogdesc" data-i18n-attr="content" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: '#FBFBFB',
+              sky1: '#E8F9FF',
+              accent1: '#C4D9FF',
+              accent2: '#C5BAFF',
+              text: '#0F172A',
+              muted: '#6B7280'
+            },
+            borderRadius: { soft: '12px' },
+            boxShadow: {
+              card: '0 6px 20px rgba(12,18,36,.06)',
+              cardLg: '0 8px 30px rgba(12,18,36,.08)'
+            },
+            fontFamily: {
+              inter: ['Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Arial'],
+              playfair: ['"Playfair Display"', 'serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Swiper (carousel) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- GLightbox (gallery lightbox) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
-    <header>
-      <div class="container nav" role="navigation" aria-label="Main">
-        <a href="/" aria-label="Capahenas Travel home"><strong>Capahenas Travel</strong></a>
-        <nav class="muted" aria-label="Primary">
-          <a href="/tours/">Tours</a>
-          <span> · </span>
-          <a href="/balloons/">Balloons</a>
-          <span> · </span>
-          <a href="/destinations/">Destinations</a>
-          <span> · </span>
-          <a href="/about.html">About</a>
-          <span> · </span>
-          <a href="/contact.html">Contact</a>
-        </nav>
-        <a class="btn btn-primary" href="https://wa.me/903842712155" target="_blank" rel="noopener" aria-label="WhatsApp">
-          WhatsApp
-        </a>
-      </div>
+  <body class="bg-bg text-text font-inter antialiased">
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <nav class="mx-auto container-max px-4 md:px-6 flex items-center justify-between h-16">
+        <a href="#" class="text-xl font-semibold">Capahenas Travel</a>
+        <div class="flex items-center gap-3">
+          <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-soft ring-1 ring-slate-200">☰</button>
+        </div>
+        <ul id="main-nav" class="hidden md:flex items-center gap-6 text-sm">
+          <li><a href="#tours" class="hover:underline" data-i18n="nav.tours">Tours</a></li>
+          <li><a href="#destinations" class="hover:underline" data-i18n="nav.destinations">Destinations</a></li>
+          <li><a href="#activities" class="hover:underline" data-i18n="nav.activities">Activities</a></li>
+          <li><a href="#gallery" class="hover:underline" data-i18n="nav.gallery">Gallery</a></li>
+          <li><a href="#contact" class="hover:underline" data-i18n="nav.contact">Contact</a></li>
+          <li><a href="mailto:info@capahenas.travel?subject=Info%20Request" class="inline-block rounded-soft px-4 py-2 font-semibold text-[#081025] shadow-md bg-gradient-to-r from-accent1 to-accent2" data-i18n="cta.info">Get info</a></li>
+          <li class="relative">
+            <button data-lang-toggle id="lang-toggle" aria-label="Language" class="w-9 h-9 rounded-full ring-1 ring-slate-200 flex items-center justify-center">🇬🇧</button>
+            <div id="lang-menu" class="hidden absolute right-0 mt-2 w-44 bg-white rounded-soft shadow-card p-2 grid grid-cols-4 gap-2 z-50">
+              <!-- flags populated by script -->
+            </div>
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <main>
-      <section class="hero">
-        <div class="hero-inner container">
-          <h1>Enjoy Cappadocia with Capahenas Travel</h1>
-          <p class="muted">Authentic small-group tours, hot air balloon flights, transfers and local experiences from Göreme.</p>
-          <div style="margin-top:16px">
-            <a class="btn btn-primary" href="/tours/">Explore Tours</a>
-            <a class="btn btn-outline" href="/contact.html" style="margin-left:8px">Contact</a>
+    <!-- Hero -->
+    <section id="hero" class="relative animate-init anim-fade-in" data-anim>
+      <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center"></div>
+      <div class="relative bg-gradient-to-b from-white/0 to-white/80">
+        <div class="mx-auto container-max px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-[1fr,380px] gap-8 items-center">
+          <div>
+            <h1 class="font-playfair text-3xl md:text-5xl leading-tight" data-i18n="hero.title">Capahenas Travel — Cappadocia & Turkey Experts</h1>
+            <p class="text-muted mt-4 max-w-xl" data-i18n="hero.subtitle">Unforgettable balloon rides, boutique experiences and curated tours across Turkey.</p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <a href="#tours" class="inline-block rounded-soft px-5 py-2.5 font-semibold text-[#081025] shadow-md bg-gradient-to-r from-accent1 to-accent2" data-i18n="hero.browse">Browse tours</a>
+              <a href="mailto:info@capahenas.travel?subject=Website%20%7C%20Info%20Request" class="inline-block rounded-soft px-5 py-2.5 font-semibold ring-1 ring-slate-200" data-i18n="hero.contact">Contact us</a>
+            </div>
+          </div>
+          <!-- Quick info request card (demo) -->
+          <aside class="bg-white/90 rounded-soft shadow-cardLg p-4">
+            <form class="grid gap-3">
+              <label class="text-sm font-medium" data-i18n="quick.dateLabel">Date
+                <input type="date" class="mt-1 w-full rounded-soft ring-1 ring-slate-200 px-3 py-2"/>
+              </label>
+              <label class="text-sm font-medium" data-i18n="quick.paxLabel">Guests
+                <input type="number" min="1" value="2" class="mt-1 w-full rounded-soft ring-1 ring-slate-200 px-3 py-2"/>
+              </label>
+              <button type="button" id="quick-mail" class="mt-2 inline-flex justify-center rounded-soft px-4 py-2.5 font-semibold text-[#081025] shadow-md bg-gradient-to-r from-accent1 to-accent2" data-i18n="quick.button">Get info (Mail)</button>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Value Proposition / Largest Retailer Section -->
+    <section class="mt-16 lg:mt-28 bg-[#FBFBFB] animate-init anim-slide-left" aria-labelledby="largest-retailer" data-anim>
+      <div class="mx-auto container-max relative px-4 md:px-6">
+        <div class="bg-gradient-to-r from-accent1 to-accent2 px-[14px] pt-[28px] lg:pt-[32px] pb-[24px] lg:p-[35px] rounded-[30px] flex flex-col lg:flex-row justify-between lg:gap-x-[60px]">
+          <div class="pt-[10px] flex flex-col items-center lg:items-start">
+            <svg class="lg:w-[84px] lg:h-[43px] w-[56px] h-[29px]" xmlns="http://www.w3.org/2000/svg" width="92.559" height="50.982" viewBox="0 0 92.559 50.982" aria-hidden="true">
+              <g transform="translate(4.121 3.14)">
+                <path d="M-21027.373,4688.731s14.877-24.526,32.34-9.944,34.408,9.184,43.729,0" transform="translate(21027.373 -4674.158)" fill="none" stroke="#3e3e3e" stroke-linecap="round" stroke-width="6"></path>
+                <path d="M-21027.373,4688.731s14.877-24.526,32.34-9.944,34.408,9.184,43.729,0" transform="translate(21027.373 -4659.583)" fill="none" stroke="#3e3e3e" stroke-linecap="round" stroke-width="6"></path>
+                <path d="M-21027.373,4688.731s14.877-24.526,32.34-9.944,40.07,7.153,51.871-6.838" transform="translate(21027.373 -4645.009)" fill="none" stroke="#3e3e3e" stroke-linecap="round" stroke-width="6"></path>
+              </g>
+            </svg>
+            <h2 id="largest-retailer" class="font-medium text-[26px] lg:text-[40px] text-text mt-[20px] lg:mt-[28px] leading-[31px] lg:leading-[47px] text-center lg:text-start" data-i18n="value.title">
+              Your trusted travel partner in Cappadocia & Turkey
+            </h2>
+            <p class="text-[18px] lg:text-[24px] font-medium text-text/70 mt-[18px] leading-[22px] lg:leading-[32px] text-center lg:text-start" data-i18n="value.desc">
+              We craft curated itineraries with verified partners and real‑time availability across the region.
+            </p>
+          </div>
+          <div class="mt-[18px] lg:mt-0">
+            <img alt="winter-balloon-selfie" loading="lazy" decoding="async" class="w-full h-full object-cover max-h-[320px] lg:max-h-[427px] lg:min-w-[410px] rounded-[40px]" src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=828&auto=format&fit=max&q=75" />
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="container" aria-labelledby="featured-heading" style="margin-top:40px;">
-        <h2 id="featured-heading">Featured Tours</h2>
-        <div class="grid grid-cols-1 grid-cols-2 grid-cols-3" style="margin-top:16px;">
-          <article class="card">
-            <img src="assets/img/img1.jpg" alt="Cappadocia Green Tour" loading="lazy">
-            <div class="card-body">
-              <div class="badge">Popular</div>
-              <h3 style="margin-top:8px;">Green Tour (South)</h3>
-              <p class="muted">Full day · 09:30–18:00 · From €40 pp</p>
-              <a class="btn btn-primary" href="/tours/green-tour.html" aria-label="Book Green Tour">Book Now</a>
+    <!-- Featured Balloon Tours -->
+    <section aria-labelledby="featured-balloon" class="py-14 md:py-16 bg-[#F4FBFD] animate-init anim-slide-right" data-anim>
+      <div class="mx-auto container-max px-4 md:px-6">
+        <h2 id="featured-balloon" class="text-2xl md:text-3xl font-playfair" data-i18n="sections.featured">Featured Balloon Tours</h2>
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <article class="rounded-soft overflow-hidden bg-white shadow-card" aria-labelledby="b1-title">
+            <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=1200&auto=format&fit=crop" alt="Sunrise Classic balloon tour" class="w-full h-56 object-cover" loading="lazy" />
+            <div class="p-4">
+              <h3 id="b1-title" class="font-semibold text-lg" data-i18n="featured.b1.title">Sunrise Classic</h3>
+              <p class="text-muted text-sm" data-i18n="featured.b1.desc">1 hour — Breakfast included</p>
+              <div class="mt-3 flex items-center justify-between">
+                <span class="font-bold">€300</span>
+                <a href="coming-soon.html" class="inline-block rounded-soft px-3 py-2 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a>
+              </div>
             </div>
           </article>
-          <article class="card">
-            <img src="assets/img/img2.jpg" alt="Cappadocia Red Tour" loading="lazy">
-            <div class="card-body">
-              <div class="badge">Top Rated</div>
-              <h3 style="margin-top:8px;">Red Tour (North)</h3>
-              <p class="muted">Full day · 09:30–18:00 · From €40 pp</p>
-              <a class="btn btn-primary" href="/tours/red-tour.html" aria-label="Book Red Tour">Book Now</a>
+          <!-- Card 2 -->
+          <article class="rounded-soft overflow-hidden bg-white shadow-card" aria-labelledby="b2-title">
+            <img src="https://images.unsplash.com/photo-1506968430777-bf7784a87f22?q=80&w=1200&auto=format&fit=crop" alt="Comfort Package balloon tour" class="w-full h-56 object-cover" loading="lazy" />
+            <div class="p-4">
+              <h3 id="b2-title" class="font-semibold text-lg" data-i18n="featured.b2.title">Comfort Package</h3>
+              <p class="text-muted text-sm" data-i18n="featured.b2.desc">Spacious basket — Transfer included</p>
+              <div class="mt-3 flex items-center justify-between">
+                <span class="font-bold">€420</span>
+                <a href="coming-soon.html" class="inline-block rounded-soft px-3 py-2 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a>
+              </div>
             </div>
           </article>
-          <article class="card">
-            <img src="assets/img/hero.jpg" alt="Private Balloon Flight" loading="lazy">
-            <div class="card-body">
-              <div class="badge">New</div>
-              <h3 style="margin-top:8px;">Balloon Flight (Private)</h3>
-              <p class="muted">Sunrise · 60–90 min · Ask price</p>
-              <a class="btn btn-primary" href="/balloons/" aria-label="Book Private Balloon">Book Now</a>
+          <!-- Card 3 -->
+          <article class="rounded-soft overflow-hidden bg-white shadow-card" aria-labelledby="b3-title">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop" alt="Private Flight balloon tour" class="w-full h-56 object-cover" loading="lazy" />
+            <div class="p-4">
+              <h3 id="b3-title" class="font-semibold text-lg" data-i18n="featured.b3.title">Private Flight</h3>
+              <p class="text-muted text-sm" data-i18n="featured.b3.desc">Private flight — Champagne</p>
+              <div class="mt-3 flex items-center justify-between">
+                <span class="font-bold">€900</span>
+                <a href="coming-soon.html" class="inline-block rounded-soft px-3 py-2 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a>
+              </div>
             </div>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="container" aria-labelledby="destinations-heading" style="margin-top:40px;">
-        <h2 id="destinations-heading">Destinations</h2>
-        <p class="muted">Göreme · Uçhisar · Avanos · Ortahisar · Kaymaklı</p>
-        <div style="margin-top:12px">
-          <a class="btn btn-outline" href="/destinations/">Explore destinations</a>
+    <!-- Türkiye Turları (10) -->
+    <section id="tours" aria-labelledby="tr-tours" class="py-14 md:py-16 bg-[#FBFBFB] animate-init" data-anim>
+      <div class="mx-auto container-max px-4 md:px-6">
+        <h2 id="tr-tours" class="text-2xl md:text-3xl font-playfair" data-i18n="sections.tours">Turkey Tours</h2>
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <!-- Generate 10 cards -->
+          <!-- Card template repeated -->
+          <template id="tour-card-template">
+            <article class="rounded-soft overflow-hidden bg-white shadow-card" aria-labelledby="tour-title">
+              <img src="" alt="Tur görseli" class="w-full h-36 object-cover" loading="lazy" />
+              <div class="p-3">
+                <h3 id="tour-title" class="font-semibold text-base" data-i18n="tour.cardTitle">Tour Title</h3>
+                <p class="text-muted text-sm" data-i18n="tour.cardDesc">Short description</p>
+                <div class="mt-3 flex items-center justify-between">
+                  <span class="font-bold text-sm">€199</span>
+                  <a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a>
+                </div>
+              </div>
+            </article>
+          </template>
+          <!-- Static fallback (10 items) -->
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Istanbul" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s1.title">Istanbul City Tour</h3><p class="text-muted text-sm" data-i18n="tours.s1.desc">Historic peninsula, Bosphorus</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€199</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Cappadocia" src="https://images.unsplash.com/photo-1509515837298-2d15e745f8c5?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s2.title">Cappadocia Discovery</h3><p class="text-muted text-sm" data-i18n="tours.s2.desc">Valleys, cave hotels</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€249</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Ephesus" src="https://images.unsplash.com/photo-1590688175308-3c93a73828b6?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s3.title">Ephesus & Sirince</h3><p class="text-muted text-sm" data-i18n="tours.s3.desc">Ancient city + village</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€219</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Pamukkale" src="https://images.unsplash.com/photo-1607427223722-0a9ee58f6ade?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s4.title">Pamukkale Travertines</h3><p class="text-muted text-sm" data-i18n="tours.s4.desc">Natural pools</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€209</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Antalya" src="https://images.unsplash.com/photo-1588590820064-fd1f68f13ca8?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s5.title">Antalya Beaches</h3><p class="text-muted text-sm" data-i18n="tours.s5.desc">Sun & sea</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€189</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Rize" src="https://images.unsplash.com/photo-1602434221619-2a2f1e28cf0d?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s6.title">Black Sea Highlands</h3><p class="text-muted text-sm" data-i18n="tours.s6.desc">A thousand shades of green</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€259</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Van" src="https://images.unsplash.com/photo-1622719908615-090cb1b0d733?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s7.title">Eastern Anatolia</h3><p class="text-muted text-sm" data-i18n="tours.s7.desc">Van, Kars, Ani</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€399</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Mardin" src="https://images.unsplash.com/photo-1602591740522-a9f5950b277a?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s8.title">Southeast Heritage</h3><p class="text-muted text-sm" data-i18n="tours.s8.desc">Mardin, Göbeklitepe</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€349</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Fethiye" src="https://images.unsplash.com/photo-1586095510096-5b8709c4f1b1?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s9.title">Lycian Way</h3><p class="text-muted text-sm" data-i18n="tours.s9.desc">Hiking trail</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€279</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
+          <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover" loading="lazy" alt="Bursa" src="https://images.unsplash.com/photo-1600423115367-7f1b1ece7054?q=80&w=1200&auto=format&fit=crop" /><div class="p-3"><h3 class="font-semibold text-base" data-i18n="tours.s10.title">In the Footsteps of the Ottomans</h3><p class="text-muted text-sm" data-i18n="tours.s10.desc">Bursa & Cumalıkızık</p><div class="mt-3 flex items-center justify-between"><span class="font-bold text-sm">€199</span><a href="coming-soon.html" class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2" data-i18n="labels.view">View</a></div></div></article>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <a class="btn btn-primary sticky-cta" href="https://wa.me/903842712155" target="_blank" rel="noopener" aria-label="WhatsApp Sticky CTA">WhatsApp</a>
+    <!-- Destinations (10) -->
+    <section id="destinations" aria-labelledby="destinations-title" class="py-14 md:py-16 bg-[#F4FBFD] animate-init anim-slide-left" data-anim>
+      <div class="mx-auto container-max px-4 md:px-6">
+        <div class="flex items-center justify-between">
+        <h2 id="destinations-title" class="text-2xl md:text-3xl font-playfair" data-i18n="sections.destinations">Destinations</h2>
+        </div>
+        <!-- Horizontal scroll on mobile, grid on desktop -->
+        <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <!-- 10 destination chips/cards -->
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200&auto=format&fit=crop" alt="İstanbul" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">İstanbul</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1509515837298-2d15e745f8c5?q=80&w=1200&auto=format&fit=crop" alt="Cappadocia" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">Cappadocia</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1607427223722-0a9ee58f6ade?q=80&w=1200&auto=format&fit=crop" alt="Pamukkale" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">Pamukkale</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1588590820064-fd1f68f13ca8?q=80&w=1200&auto=format&fit=crop" alt="Antalya" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">Antalya</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1602434221619-2a2f1e28cf0d?q=80&w=1200&auto=format&fit=crop" alt="Rize" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">Rize</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1590688175308-3c93a73828b6?q=80&w=1200&auto=format&fit=crop" alt="İzmir" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">İzmir</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Ankara" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">Ankara</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1602591740522-a9f5950b277a?q=80&w=1200&auto=format&fit=crop" alt="Mardin" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">Mardin</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1622719908615-090cb1b0d733?q=80&w=1200&auto=format&fit=crop" alt="Van" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">Van</div>
+          </a>
+          <a href="coming-soon.html" class="group rounded-soft bg-white shadow-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1526481280698-8fcc13fdcc2d?q=80&w=1200&auto=format&fit=crop" alt="Konya" class="h-32 w-full object-cover" loading="lazy" />
+            <div class="p-3 font-medium">Konya</div>
+          </a>
+        </div>
+      </div>
+    </section>
 
-    <footer>
-      <div class="container">
-        <div>Capahenas Travel — TURSAB Member</div>
-        <div class="muted">Isali Gaferli Avcılar mah Fatih sok No 16/A Göreme, Nevşehir · +90 384 271 2155</div>
-        <div class="muted"><a href="/legal/terms.html">Terms</a> · <a href="/legal/privacy.html">Privacy</a></div>
+    <!-- Activities (9) -->
+    <section id="activities" aria-labelledby="activities-title" class="py-14 md:py-16 bg-[#FBFBFB] animate-init anim-slide-right" data-anim>
+      <div class="mx-auto container-max px-4 md:px-6">
+        <h2 id="activities-title" class="text-2xl md:text-3xl font-playfair" data-i18n="sections.activities">Activities</h2>
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- 9 activity items -->
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">🎈</span><div><h3 class="font-semibold" data-i18n="act.balloon.title">Hot-air balloon</h3><p class="text-muted text-sm" data-i18n="act.balloon.desc">Sunrise flight</p></div></a>
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">🏍️</span><div><h3 class="font-semibold" data-i18n="act.atv.title">ATV safari</h3><p class="text-muted text-sm" data-i18n="act.atv.desc">Adventure in valleys</p></div></a>
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">🐎</span><div><h3 class="font-semibold" data-i18n="act.horse.title">Horse riding</h3><p class="text-muted text-sm" data-i18n="act.horse.desc">Sunset tour</p></div></a>
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">🧱</span><div><h3 class="font-semibold" data-i18n="act.pottery.title">Pottery workshop</h3><p class="text-muted text-sm" data-i18n="act.pottery.desc">Hands-on experience</p></div></a>
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">🥾</span><div><h3 class="font-semibold" data-i18n="act.hiking.title">Hiking</h3><p class="text-muted text-sm" data-i18n="act.hiking.desc">Nature walks</p></div></a>
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">🍷</span><div><h3 class="font-semibold" data-i18n="act.wine.title">Wine tasting</h3><p class="text-muted text-sm" data-i18n="act.wine.desc">Local wines</p></div></a>
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">📸</span><div><h3 class="font-semibold" data-i18n="act.photo.title">Photo tour</h3><p class="text-muted text-sm" data-i18n="act.photo.desc">Best spots</p></div></a>
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">🏛️</span><div><h3 class="font-semibold" data-i18n="act.culture.title">Cultural tours</h3><p class="text-muted text-sm" data-i18n="act.culture.desc">Heritage & history</p></div></a>
+          <a href="coming-soon.html" class="rounded-soft bg-white shadow-card p-4 flex items-start gap-3"><span class="text-xl">🏨</span><div><h3 class="font-semibold" data-i18n="act.cave.title">Cave hotels</h3><p class="text-muted text-sm" data-i18n="act.cave.desc">Rock-cut stays</p></div></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery with Lightbox -->
+    <section id="gallery" aria-labelledby="gallery-title" class="py-14 md:py-16 bg-[#F4FBFD] animate-init anim-zoom" data-anim>
+      <div class="mx-auto container-max px-4 md:px-6">
+        <div class="flex items-center justify-between" aria-live="polite">
+          <h2 id="gallery-title" class="text-2xl md:text-3xl font-playfair" data-i18n="sections.gallery">Gallery</h2>
+        </div>
+        <!-- Instagram-like card -->
+        <article id="insta-card" data-url="https://www.instagram.com/turquazballoons/" class="mt-6 bg-white rounded-[22px] shadow-cardLg ring-1 ring-slate-200/60 overflow-hidden">
+          <!-- Header -->
+          <header class="px-4 sm:px-5 pt-4 sm:pt-5 pb-3 flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=128&auto=format&fit=crop&q=60" alt="Turquaz Balloons logo" class="w-10 h-10 rounded-full object-cover ring-1 ring-slate-200" />
+            <div class="leading-tight">
+              <div class="font-semibold">Turquaz Balloons</div>
+              <div class="text-sm text-muted">@turquazballoons</div>
+            </div>
+          </header>
+          <!-- Media grid -->
+          <div class="px-2 sm:px-3 pb-3">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 select-none">
+              <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1600&auto=format&fit=crop"><img alt="Cappadocia" loading="lazy" class="w-full h-64 md:h-80 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=900&auto=format&fit=crop" /></a>
+              <div class="grid gap-2 sm:gap-3">
+                <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1506968430777-bf7784a87f22?w=1400&auto=format&fit=max&q=80"><img alt="Balloons" loading="lazy" class="w-full h-40 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1506968430777-bf7784a87f22?w=900&auto=format&fit=max&q=80" /></a>
+                <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1588590820064-fd1f68f13ca8?q=80&w=1600&auto=format&fit=crop"><img alt="Night Balloon" loading="lazy" class="w-full h-40 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1588590820064-fd1f68f13ca8?q=80&w=900&auto=format&fit=crop" /></a>
+              </div>
+              <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop"><img alt="Valley" loading="lazy" class="w-full h-64 md:h-80 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=900&auto=format&fit=crop" /></a>
+              <div class="grid gap-2 sm:gap-3">
+                <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=1600&auto=format&fit=crop"><img alt="Sunrise" loading="lazy" class="w-full h-40 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=900&auto=format&fit=crop" /></a>
+                <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1607427223722-0a9ee58f6ade?q=80&w=1600&auto=format&fit=crop"><img alt="Pamukkale" loading="lazy" class="w-full h-40 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1607427223722-0a9ee58f6ade?q=80&w=900&auto=format&fit=crop" /></a>
+              </div>
+              <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop" class="hidden md:block"><img alt="Istanbul" loading="lazy" class="w-full h-40 md:h-80 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=900&auto=format&fit=crop" /></a>
+              <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1602434221619-2a2f1e28cf0d?q=80&w=1600&auto=format&fit=crop"><img alt="Rize" loading="lazy" class="w-full h-40 md:h-80 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1602434221619-2a2f1e28cf0d?q=80&w=900&auto=format&fit=crop" /></a>
+              <div class="grid gap-2 sm:gap-3">
+                <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&amp;w=1600&amp;auto=format&amp;fit=crop"><img alt="Sunrise" loading="lazy" class="w-full h-40 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&amp;w=900&amp;auto=format&amp;fit=crop"></a>
+                <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1607427223722-0a9ee58f6ade?q=80&amp;w=1600&amp;auto=format&amp;fit=crop"><img alt="Pamukkale" loading="lazy" class="w-full h-40 object-cover rounded-[18px] object-contain bg-sky1/50" src="data:image/svg+xml;utf8,      &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;600&quot; height=&quot;400&quot;&gt;        &lt;rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23E8F9FF&quot;/&gt;        &lt;text x=&quot;50%&quot; y=&quot;50%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; fill=&quot;%236B7280&quot; font-family=&quot;Inter, Arial&quot; font-size=&quot;18&quot;&gt;Görsel yüklenemedi&lt;/text&gt;      &lt;/svg&gt;" data-fallback="1"></a>
+              </div>
+              <a class="glightbox" data-gallery="capahenas" href="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&amp;w=1600&amp;auto=format&amp;fit=crop"><img alt="Valley" loading="lazy" class="w-full h-64 md:h-80 object-cover rounded-[18px]" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&amp;w=900&amp;auto=format&amp;fit=crop"></a>
+            </div>
+          </div>
+          <!-- Footer -->
+          <footer class="px-4 sm:px-5 py-3 flex items-center justify-between border-t border-slate-200/70 text-sm">
+            <div class="flex items-center gap-5 text-slate-800">
+              <button type="button" aria-label="Like" class="hover:opacity-80" data-no-nav>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-6.5-4.6-9-7.6C1 10.9 2 7.5 4.8 6 7 4.9 9.5 5.7 11 7.6c1.5-1.9 4-2.7 6.2-1.6C20 7.5 21 10.9 21 13.4 18.5 16.4 12 21 12 21z"/></svg>
+              </button>
+              <button type="button" aria-label="Comment" class="hover:opacity-80" data-no-nav>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 15a6 6 0 0 1-6 6H8l-4 2v-5a6 6 0 0 1-6-6V7a6 6 0 0 1 6-6h10a6 6 0 0 1 6 6v8z" transform="translate(4 -1)"/></svg>
+              </button>
+              <button type="button" aria-label="Share" class="hover:opacity-80" data-no-nav>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              </button>
+            </div>
+            <div class="text-muted flex items-center gap-4">
+              <span>Posts: <span class="font-semibold">+400</span></span>
+              <span>Followers: <span class="font-semibold">+19K</span></span>
+              <span class="hidden sm:inline">Following: <span class="font-semibold">600</span></span>
+            </div>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- Testimonials (Swiper) -->
+    <section aria-labelledby="reviews-title" class="py-14 md:py-16 bg-[#FBFBFB] animate-init" data-anim>
+      <div class="mx-auto container-max px-4 md:px-6">
+        <h2 id="reviews-title" class="text-2xl md:text-3xl font-playfair" data-i18n="sections.reviews">Reviews</h2>
+        <div class="mt-6 swiper" id="reviews-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">Hayatımın en güzel deneyimlerinden biriydi. Gün doğumu uçuşu unutulmaz!</p><div class="mt-3 font-medium">— Aylin</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">Flawless organization, every detail was considered. Thank you!</p><div class="mt-3 font-medium">— Marco</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">Experiencia inolvidable. El vuelo en globo al amanecer fue mágico.</p><div class="mt-3 font-medium">— Lucía</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">Организация на высшем уровне. Рекомендуем!</p><div class="mt-3 font-medium">— Dmitry</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">Service impeccable et paysages à couper le souffle.</p><div class="mt-3 font-medium">— Claire</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">Organisation perfekt, tolle Guides und sichere Flüge.</p><div class="mt-3 font-medium">— Jonas</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">Esperienza unica! Personale gentilissimo e professionale.</p><div class="mt-3 font-medium">— Giulia</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">رحلة رائعة ومنظمة. المنظر من المنطاد لا يوصف.</p><div class="mt-3 font-medium">— Faisal</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">组织很专业，热气球体验超出预期。</p><div class="mt-3 font-medium">— Xiaomei</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">가족 모두가 즐거웠어요. 강력 추천합니다!</p><div class="mt-3 font-medium">— Minseo</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">最高の体験でした。朝日の中のフライトは忘れられません。</p><div class="mt-3 font-medium">— Kenji</div></div></div>
+            <div class="swiper-slide"><div class="rounded-soft bg-white shadow-card p-6"><p class="text-muted">Prachtige ervaring en prima begeleiding.</p><div class="mt-3 font-medium">— Sofie</div></div></div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Reasons / Benefits Section -->
+    <section class="mt-10 lg:mt-16 mb-20 lg:mb-36 bg-[#F4FBFD] animate-init anim-slide-left" aria-labelledby="reasons-title" data-anim>
+      <div class="mx-auto container-max px-4 md:px-6">
+        <div class="flex flex-col lg:flex-row items-center lg:gap-[67px]">
+          <div class="relative bg-sky1/60 p-[25px] lg:p-[35px] rounded-[30px] max-w-[356px] lg:max-w-[454px] max-h-[267px] mb-[220px] lg:mb-[275px]">
+            <img alt="smiling-woman" loading="lazy" decoding="async" class="min-w-[302px] max-w-[302px] max-h-[425px] min-h-[425px] lg:min-w-[384px] lg:max-w-[385px] lg:max-h-[542px] lg:min-h-[542px] object-cover select-none pointer-events-none rounded-[16px]" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1080&auto=format&fit=max&q=75" />
+            <p class="absolute left-[-150px] lg:left-[-230px] lg:bottom-[-90px] bottom-[-25px] -rotate-90 text-text text-[11px] lg:text-[15px] font-medium tracking-[2px] lg:tracking-[3px] w-[340px] lg:w-[500px] text-center" data-i18n="benefits.ribbon">
+              World's first balloon flight ticketing platform
+            </p>
+          </div>
+          <div>
+            <div id="reasons-title" class="text-[28px] font-medium text-text leading-9 lg:mt-[30px]" data-i18n="benefits.title">
+              Reasons to book your trip with Capahenas Travel
+            </div>
+            <div class="flex flex-col gap-[30px]">
+              <div class="flex items-start lg:items-center gap-[20px] lg:gap-[36px] mt-[30px] lg:mt-[50px]">
+                <div class="mt-1.5 lg:mt-0 min-w-[45px] lg:min-w-[65px] flex items-center justify-center">
+                  <!-- shield check icon -->
+                  <svg class="w-[42.5px] h-[44px] lg:w-[57px] lg:h-[60px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3l7 3v6c0 5-3.5 9-7 9s-7-4-7-9V6l7-3z" stroke="#ff5858" stroke-width="1.5"/><path d="M8 12l2.5 2.5L16 9" stroke="#ff5858" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="flex flex-col gap-[8px]">
+                  <h3 class="font-medium" data-i18n="benefits.refund.title">Refund Guarantee</h3>
+                  <p class="text-[#6E6E6E] lg:max-w-[330px]" data-i18n="benefits.refund.desc">Refunds provided if weather forces cancellations. Travel with confidence.</p>
+                </div>
+              </div>
+              <div class="flex items-start lg:items-center gap-[20px] lg:gap-[36px]">
+                <div class="mt-1.5 lg:mt-0 min-w-[45px] lg:min-w-[65px] flex items-center justify-center">
+                  <!-- gear icon -->
+                  <svg class="w-[42.5px] h-[43px] lg:w-[65px] lg:h-[66px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="#ff5858" stroke-width="1.5"/><path d="M19.4 15a7.96 7.96 0 00.2-2 7.96 7.96 0 00-.2-2l2-1.5-2-3.5-2.4 1a8.06 8.06 0 00-3.4-2l-.3-2.6h-4l-.3 2.6a8.06 8.06 0 00-3.4 2l-2.4-1-2 3.5 2 1.5a7.96 7.96 0 00-.2 2 7.96 7.96 0 00.2 2l-2 1.5 2 3.5 2.4-1a8.06 8.06 0 003.4 2l.3 2.6h4l.3-2.6a8.06 8.06 0 003.4-2l2.4 1 2-3.5-2-1.5z" stroke="#ff5858" stroke-width="1.5"/></svg>
+                </div>
+                <div class="flex flex-col gap-[8px]">
+                  <h3 class="font-medium" data-i18n="benefits.manage.title">Manage Booking</h3>
+                  <p class="text-[#6E6E6E] lg:max-w-[330px]" data-i18n="benefits.manage.desc">Change or cancel easily via email; fast assistance from our team.</p>
+                </div>
+              </div>
+              <div class="flex items-start lg:items-center gap-[20px] lg:gap-[36px]">
+                <div class="mt-1.5 lg:mt-0 min-w-[45px] lg:min-w-[65px] flex items-center justify-center">
+                  <!-- tag icon -->
+                  <svg class="w-[27.5px] h-[46.5px] lg:w-[40px] lg:h-[67px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 13l-7 7-9-9V4h7l9 9z" stroke="#ff5858" stroke-width="1.5"/><circle cx="7.5" cy="7.5" r="1.5" fill="#ff5858"/></svg>
+                </div>
+                <div class="flex flex-col gap-[8px]">
+                  <h3 class="font-medium" data-i18n="benefits.price.title">Best Price</h3>
+                  <p class="text-[#6E6E6E] lg:max-w-[330px]" data-i18n="benefits.price.desc">Transparent pricing across partners so you always get a great deal.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <section id="contact" class="py-16 bg-[#FBFBFB] animate-init anim-fade-in" data-anim>
+      <div class="mx-auto container-max px-4 md:px-6 grid md:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-playfair" data-i18n="sections.contact">Contact</h2>
+          <p class="text-muted mt-3" data-i18n="contact.subtitle">For questions and information, write to us.</p>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li data-i18n="contact.email">Email: <a class="underline" href="mailto:info@capahenas.travel">info@capahenas.travel</a></li>
+            <li data-i18n="contact.phone">Phone: <a class="underline" href="tel:+905551112233">+90 555 111 22 33</a></li>
+            <li data-i18n="contact.address">Address: Cappadocia, Türkiye</li>
+          </ul>
+        </div>
+        <form id="contact-form" class="bg-white rounded-soft shadow-card p-5 grid gap-3">
+          <label class="text-sm font-medium" data-i18n="form.name">Full name
+            <input type="text" id="f-name" class="mt-1 w-full rounded-soft ring-1 ring-slate-200 px-3 py-2" placeholder="Your name" />
+          </label>
+          <label class="text-sm font-medium" data-i18n="form.email">Email
+            <input type="email" id="f-email" class="mt-1 w-full rounded-soft ring-1 ring-slate-200 px-3 py-2" placeholder="name@mail.com" />
+          </label>
+          <label class="text-sm font-medium" data-i18n="form.message">Message
+            <textarea id="f-message" class="mt-1 w-full rounded-soft ring-1 ring-slate-200 px-3 py-2" rows="4" placeholder="Your message"></textarea>
+          </label>
+          <button type="button" id="contact-mail" class="mt-1 inline-flex justify-center rounded-soft px-4 py-2.5 font-semibold text-[#081025] shadow-md bg-gradient-to-r from-accent1 to-accent2" data-i18n="form.send">Send via email</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="py-8 border-t border-slate-200">
+      <div class="mx-auto container-max px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted">
+        <div><span data-i18n="footer.copyright">©</span> <span id="y"></span> Capahenas Travel</div>
+        <ul class="flex items-center gap-4">
+          <li><a href="#" class="hover:underline" data-i18n="footer.privacy">Privacy</a></li>
+          <li><a href="#" class="hover:underline" data-i18n="footer.terms">Terms</a></li>
+        </ul>
       </div>
     </footer>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "TravelAgency",
-      "name": "Capahenas Travel",
-      "url": "https://www.capahenastravel.com",
-      "telephone": "+90 384 271 2155",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Isali Gaferli Avcılar mah Fatih sok No 16/A Goreme",
-        "addressLocality": "Goreme",
-        "addressRegion": "Nevsehir",
-        "addressCountry": "TR"
-      }
-    }
-    </script>
-
-    <script src="assets/js/main.js" defer></script>
+    <!-- Init scripts -->
+    <script src="i18n/translations.js"></script>
+    <script src="js/i18n.js" defer></script>
+    <script src="js/main.js" defer></script>
+    
+    <!-- Floating WhatsApp Button -->
+    <a id="whatsapp-fab" href="https://wa.me/905551112233?text=Merhaba%20Capahenas%20Travel!" target="_blank" rel="noopener" aria-label="WhatsApp" class="fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 w-14 h-14 rounded-full shadow-cardLg ring-1 ring-slate-200/70 flex items-center justify-center text-[#081025] bg-gradient-to-r from-accent1 to-accent2 hover:brightness-105">
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.5 4.5A14 14 0 0 0 4.3 23.6L3 29l5.5-1.3A14 14 0 1 0 27.5 4.5Z" stroke="#081025" stroke-width="1.2" fill="white"/>
+        <path d="M20.7 18.8c-.3-.1-1.8-.9-2.1-1s-.5-.1-.7.1c-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.8.6.8.2 1.5.2 2.1.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.1-.6-.2Z" fill="#25D366"/>
+      </svg>
+    </a>
   </body>
   </html>
+
 

@@ -1,222 +1,282 @@
-Proje: Capahenas Travel — Statik Web Site
-1 — Özet / Amaç
+Capahenas Travel — Ana Sayfa PDD (Markdown)
+1) Hızlı inceleme — çıkardığım UX fikirleri
 
-Mevcut capahenastravel.com sitesindeki içerikleri koruyup modern ve ilgi çeken bir statik web sitesine dönüştürmek. (Sunum: mobil öncelikli, görsel zengin, rezervasyon/iletişim odaklı.)
+Büyük görsel/hero + erken CTA (rezervasyon / iletişim / "Book now") kullanımı etkili. Bu, ziyaretçiyi hemen dönüştürmeye çalışıyor. (inspirasyon: TurquazBallons). 
+turquazballoons.com
 
-Tasarımda ana ilham kaynağı: goturkiye.com — büyük görsel kartlar, kategori/destinasyon keşfi, sürdürülebilirlik vurguları ve zengin içerik ağacı. 
-GoTürkiye
+Turlar/destinations listesi kartlarla (resim, kısa açıklama, fiyat / badge) sunuluyor — kolayca taranıyor ve filtrelenebiliyor. (inspirasyon: Balloonscanner). 
+balloonscanner.com
 
-Eski sitenin (Capahenas) mevcut içerikleri: About Us, Contact, Tours (Red/Green/Private vb.), Balloon Flights (standard/comfort/private), Destinations listesi, Activities & Services, TURSAB üyelik bilgisi, fiyatlanmış öne çıkan turlar, WhatsApp canlı sohbet linkleri. Bu içerikler yeni yapı içinde yeniden kullanılacak. 
-capahenastravel.com
+Kullanıcı yorumları & Trust elements (rating, small testimonial cards) güven veriyor — ana sayfada kısa referanslar konmalı. 
+turquazballoons.com
 
-2 — Hedef Kitle & Başarı Kriterleri
+2) Hedef / Kısa açıklama
 
-Hedef kitle: Cappadocia / Türkiye'ye tatil planlayan uluslararası turistler (özellikle İngilizce konuşan), aileler, çiftler, macera/tarihe ilgi duyan küçük gruplar.
+Amaç: Capahenas Travel için modern, premium, açık-tema, UI/UX-friendly tek ana sayfa.
+Odak: Cappadocia turları (ana konu) + Türkiye genelinde 10 tur (liste) + Balloon turları (3) + Destinations (10) + Aktiviteler (9).
+Davranış: Turların her biri demo için "Yapım aşamasında" sayfasına yönlendirilecek (müştire demo).
 
-Başarı kriterleri:
+3) İçerik yapısı (ana sayfa bölümleri — sıralama)
 
-Ana sayfada rezervasyon/whatsapp/telefon çağrı aksiyonları görünür + tıklama oranı artışı.
+Üst (sticky) nav: logo, menu (Home, Cappadocia, Tours, Destinations, Activities, Gallery, Contact), dil/booking CTA.
 
-Tur sayfalarında açık, kısa fiyat/özellik/rezervasyon CTA'ları.
+Hero (tam genişlik): büyük Cappadocia görüntüsü, kısa tag-line, 2 CTA (Book / Browse Tours).
 
-SEO: "Cappadocia hot air balloon", "Cappadocia tours", "Cappadocia red tour" gibi anahtar kelimelerde organik bulunabilirlik (temel meta+schema).
+Quick booking card (küçük, hero içinde veya hemen altında) — tarihler / pax seçici (opsiyonel, demo buton).
 
-Hızlı yükleme (statik site, optimize edilmiş görseller, lazy-load).
+Highlight paketler (3 balloon tour cards — premium öne çıkan).
 
-3 — Temel Özellikler (İlham: GoTürkiye)
+Turlar (Türkiye) — grid, 10 adet (herbiri küçük kart, “Yapım aşamasında” butonu).
 
-Kart tabanlı keşif (destinations / experiences) düzeni. (hero → kategori kartları → öne çıkan turlar). 
-GoTürkiye
+Destinations (10) — yatay kaydırılabilen carousel veya grid.
 
-Kategori filtreleri: Tours / Balloon Flights / Activities / Destinations.
+Aktiviteler (9) — ikon + kısa açıklama grid.
 
-Her turun detay sayfası: kısa özet + program + fiyat aralığı + “Book / Inquiry” CTA + WhatsApp/phone. (Capahenas'taki içerik bu yapıya oturtulacak). 
-capahenastravel.com
+Galeri — masonry veya grid, lightbox.
 
-Çok dilli yapı için hazır meta (ilk sürüm: EN + TR).
+Reviews / Testimonials — carousel.
 
-Footer: iletişim, TURSAB üye numarası, sosyal medya, çalışma saatleri (eski sitedeki bilgiler burada).
+Footer — contact, sosyal, küçük menü, yasal.
 
-4 — Site Haritası (Sitemap)
-/index.html                (Hero, Öne Çıkan Turlar, Destinations kartları, Hakkımızda kısa)
-/tours/                    (Turlar listesi; filtre: Red/Green/Private/One-day)
-/tours/green-tour.html
-/tours/red-tour.html
-/tours/private-tours.html
-/balloons/                 (Balloon flights list & booking CTA)
-/destinations/             (Destinations list & detay sayfaları)
-/destinations/goreme.html
-/services/                 (Airport transfer, ATV, Horse Riding, Jeep, Photo shoot, vb.)
-/about.html                (Full About Us; TURSAB member info)
-/contact.html              (Contact form, WhatsApp, phone, address + Google Maps embed)
-/legal/terms.html
-/legal/privacy.html
-/404.html
-/assets/                   (images, css, js, json-ld)
+4) İçerik adedi ve davranış (tam istek karşılığı)
 
-5 — İçerik Haritalama (Eski → Yeni)
-Eski Sayfa / İçerik	Yeni Konum	Not
-Home (capahenas ana)	/index.html	Hero: büyük Cappadocia görseli + kısa açılış metni
-Popular Tours (liste)	/index.html + /tours/	Kart biçiminde fiyat & kısa info
-Balloon Flights (standard/comfort/private)	/balloons/ + detay sayfaları	Ödeme yerine "Book / Inquiry" + WhatsApp
-Destinations list (Goreme, Kaymakli, vb.)	/destinations/ + /destinations/*.html	Her destinasyon kısa açıklama + görseller
-Contact Info, Address, Phone, Email	/contact.html + footer	WhatsApp butonunu sabitle (header/footer)
-TURSAB üye no.	Footer & About	Güven başlangıcı olarak görünür. 
-capahenastravel.com
-6 — Görsel & UI Kılavuzu (İlham + Revizyon)
+Türkiye turları: 10 kart (tıklayan "Yapım aşamasında" sayfasına gider).
 
-Renk paleti: Cappadocia natürel tonları — sıcak kum/terra/ateş tonları + koyu mavi kontrast (CTA'lar).
+Balon turları: 3 kart (bunlar ana paket olarak öne çıkacak).
 
-Tipografi: Başlıklar için güçlü sans-serif (Google: Poppins/Montserrat), gövde için okunaklı Inter veya Roboto.
+Destinations: 10 yer — küçük bilgi & "Daha fazla" (dest page → yapım aşamasında).
 
-Hero: Full-bleed yüksek çözünürlüklü arka plan (görsel optimize edilecek). Üzerinde 2-line başlık + kısa CTA (Book / Contact).
+Aktiviteler: 9 (örn: Hot-air balloon, ATV, Horse riding, Çömlek workshop, Hiking, Wine tasting, Photo tour, Cultural tours, Cave hotels).
 
-Kartlar: Görsel üstte, altta kısa meta (süre, kişi sayısı), fiyat/starting price, book button. (GoTürkiye kart düzeninden esinlen). 
-GoTürkiye
+Galeri: ana sayfada görsel ağırlıklı, lightbox desteği.
 
-Mobil tasarım: sticky footer CTA (WhatsApp) ve hamburger menü.
+Hepsi responsive ve performans-tuned (lazy-load, CDN).
 
-İkonografi: deneyim türleri için küçük icon seti (balloon, hike, history, food).
+5) Görsel & stil / tema
 
-7 — Teknik Yaklaşım & Stack (statik)
+Açık tema — renk paleti (major → minor):
 
-Statik site — tercihen: plain HTML/CSS/JS veya bir hafif SSG (Hugo / Eleventy / Astro). Cursor içinde doğrudan static HTML + Tailwind CSS ya da Bootstrap ile hızlı prototip uygundur.
+#FBFBFB (background — very light)
 
-Dosya yapısı önerisi: yukarıdaki /assets/ ve içerik klasörleri.
+#E8F9FF (soft sky tint)
 
-Görsel optimizasyon: WebP, responsive srcset, lazy-loading.
+#C4D9FF (accent soft blue)
 
-Form/Booking: Contact form için Netlify Forms, Formspree veya e-posta mailto basitlik tercih edilebilir; rezervasyonlar için WhatsApp hızlı çözümü (eski sitede WhatsApp bağlantıları mevcut — bunu koruyalım). 
-capahenastravel.com
+#C5BAFF (violet-ish accent)
 
-SEO & Structured Data: JSON-LD (Organization, LocalBusiness, Product/Tour schema), meta tags (og:), canonical. Örnek JSON-LD şablonu aşağıda.
+Typography (öneri, Google Fonts via CDN):
 
-Örnek JSON-LD (Organization):
+Başlıklar: Playfair Display veya Merriweather (serif, premium his)
 
-{
-  "@context": "https://schema.org",
-  "@type": "TravelAgency",
-  "name": "Capahenas Travel",
-  "url": "https://www.capahenastravel.com",
-  "telephone": "+90 384 271 2155",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Isali Gaferli Avcılar mah Fatih sok No 16/A Goreme",
-    "addressLocality": "Goreme",
-    "addressRegion": "Nevsehir",
-    "addressCountry": "TR"
-  },
-  "sameAs": ["https://www.facebook.com/…", "https://www.instagram.com/…"]
+Body: Inter veya Roboto (sans, okunabilir)
+
+Buton / CTA stilleri: rounded 12px, subtle shadow, gradient/solid from #C4D9FF → #C5BAFF, dark text or navy contrast. Focus / hover states açıkça görünür.
+
+Spacing & layout: generous white-space, card shadows, soft rounded corners (8–16px).
+
+6) Teknik tercihler / kütüphane önerileri (CDN ile)
+
+CSS: Tailwind CSS (CDN) veya standart styles.css + CSS vars (:root) — tercihe göre Tailwind hızlı prototip.
+
+JS: Alpine.js (küçük interaktivite), veya vanilla.
+
+Carousel / Gallery: Swiper.js (CDN) veya GLightbox / PhotoSwipe (lightbox).
+
+Icons: Heroicons veya Feather via CDN.
+
+Fonts: Google Fonts CDN.
+
+Optional: AOS (scroll animations) — ama hafif kullan.
+
+7) Erişilebilirlik (A11y) & performans
+
+Hero resimlerinde alt metinleri, CTA butonlarında aria-label.
+
+Renk kontrastlarını kontrol et (metin vs bg).
+
+Lazy-load tüm galeri/resimler (native loading="lazy").
+
+CSS küçük/concise ve tek dosya; JS minimal — kritik JS inline, geri kalan defer.
+
+Meta tags: OpenGraph, Twitter Card, locale.
+
+8) Klasör yapısı (projede)
+capahenas-travel/
+│
+├── index.html
+├── coming-soon.html            # template for each tour (yapım aşamasında)
+│
+├── css/
+│   └── styles.css
+│
+├── js/
+│   ├── main.js
+│   └── gallery.js
+│
+├── images/
+│   ├── hero-cappadocia-1.jpg
+│   ├── balloon-1.jpg
+│   └── gallery/
+│       ├── g1.jpg
+│       └── ...
+│
+├── vendors/                    # optional, or via CDN
+│   └── swiper/
+│
+└── assets/
+    └── brochure.pdf
+
+9) Örnek HTML + CSS Kısımları (ana sayfa — minimal, doğrudan kullanabilirsin)
+CSS değişkenleri (styles.css başında)
+:root{
+  --bg: #FBFBFB;
+  --sky-1: #E8F9FF;
+  --accent-1: #C4D9FF;
+  --accent-2: #C5BAFF;
+  --text: #0F172A; /* koyu gri/navy */
+  --muted: #6B7280;
+  --radius: 12px;
 }
 
-8 — Erişilebilirlik & Uluslararasılaşma
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+}
 
-A11y: yeterli kontrast, alt etiketleri, klavye navigasyonu, semantic HTML.
+/* Basit CTA */
+.btn-primary{
+  display:inline-block;
+  padding: .75rem 1.25rem;
+  border-radius: 12px;
+  background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+  color: #081025;
+  font-weight:600;
+  box-shadow: 0 6px 20px rgba(15,23,42,0.06);
+  text-decoration:none;
+}
 
-Dil: ilk sürüm için EN ve TR dosyaları (örn. /en/ veya ?lang=en). Meta hreflang etiketleri eklenecek.
+Hero (index.html içinden)
+<header class="site-header" style="position:sticky;top:0;background:rgba(255,255,255,.8);backdrop-filter: blur(6px);">
+  <nav class="container">
+    <a href="/" class="logo">Capahenas Travel</a>
+    <ul class="nav">
+      <li><a href="#tours">Tours</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a class="btn-primary" href="#contact">Book</a></li>
+    </ul>
+  </nav>
+</header>
 
-9 — İçerik & SEO Önerileri (ilk kurulumda)
+<section id="hero" style="padding:4rem 0;background:linear-gradient(180deg, rgba(255,255,255,0.0), rgba(232,249,255,.05)),url('images/hero-cappadocia-1.jpg') center/cover no-repeat;">
+  <div class="container" style="display:flex;align-items:center;gap:2rem;">
+    <div style="max-width:700px;">
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);margin:0;">
+        Capahenas Travel — Cappadocia & Türkiye Eksperleri
+      </h1>
+      <p style="color:var(--muted);margin-top:1rem;">Unutulmaz balon turları, butik deneyimler ve Türkiye içi seçilmiş turlar.</p>
+      <div style="margin-top:1.5rem;">
+        <a class="btn-primary" href="#tours">Turlara Gözat</a>
+        <a class="btn-ghost" href="#contact" style="margin-left:1rem;">İletişime Geç</a>
+      </div>
+    </div>
 
-Her turun başında kısa özet (25–35 kelime), sonra program, dahil/harici, ipuçları, rezervasyon adımı.
+    <!-- Quick booking card (opsiyonel) -->
+    <aside style="background:var(--bg);padding:1rem;border-radius:12px;box-shadow:0 8px 30px rgba(12,18,36,.06);min-width:320px;">
+      <form>
+        <label>Tarih</label><input type="date" name="date" />
+        <label>Kişi</label><input type="number" min="1" value="2"/>
+        <button class="btn-primary" type="button">Hemen Rezervasyon (Demo)</button>
+      </form>
+    </aside>
+  </div>
+</section>
 
-Meta title örnek: Red Tour (North) - Capahenas Travel | Cappadocia Day Tours
+Tour card (grid içinde)
+<article class="tour-card" aria-labelledby="tour-1-title" style="border-radius:12px;overflow:hidden;background:white;box-shadow:0 6px 20px rgba(12,18,36,.04);">
+  <img src="images/balloon-1.jpg" alt="Balloon tour" style="width:100%;height:220px;object-fit:cover;">
+  <div style="padding:1rem;">
+    <h3 id="tour-1-title">Cappadocia Sunrise Balloon — Classic</h3>
+    <p class="muted">1 hour — Breakfast included</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;">
+      <span style="font-weight:700">€300</span>
+      <a href="coming-soon.html" class="btn-primary" aria-label="View tour">Yapım aşamasında</a>
+    </div>
+  </div>
+</article>
 
-Meta description örnek: Explore Cappadocia's highlights in our Red Tour. Visit Göreme Open-Air Museum, Pasabag Fairy Chimneys and more. Book now.
+Coming Soon sayfası (coming-soon.html)
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tour — Coming Soon</title></head>
+<body style="font-family:Inter,Arial;background:var(--bg);">
+  <main style="min-height:100vh;display:grid;place-items:center;">
+    <section style="text-align:center;padding:3rem;">
+      <h1>Bu Tur Yapım Aşamasında</h1>
+      <p>Bu sayfa şu an demo amaçlıdır. Lütfen bizimle iletişime geçin: <a href="mailto:info@capahenas.travel">info@capahenas.travel</a></p>
+      <p><a href="/" class="btn-primary">Ana Sayfaya Dön</a></p>
+    </section>
+  </main>
+</body>
+</html>
 
-10 — UI Bileşenleri / Tekrarlayan Parçalar (Cursor içinde hızlı oluşturulacak)
+10) Galeri önerisi
 
-Header: logo, nav (Tours / Balloons / Destinations / Services / About / Contact), language switch, CTA (WhatsApp).
+Grid 3 sütun (desktop), 2 (tablet), 1 (mobile). Her görsel loading="lazy" ve tıklandığında lightbox açsın.
 
-Hero: başlık + kısa paragraf + 2 CTA.
+Örnek görseller demo amaçlı: kullandığım görsel arama sonuçlarından sıcak sunrise ballon görselleri — örnek görseller demo içerikte kullanılabilir (lisans/altyapı kontrolü sana kalır). (Kaynak örnek görsel aramaları).
 
-Tour Card: görsel, badge (popular/new), süre, kişi sayısı, starting price, book button.
+11) Ana sayfa veri modeli (JSON örneği — hızlı prototip için)
+{
+  "site": {
+    "name": "Capahenas Travel",
+    "hero": { "title":"Capahenas Travel — Cappadocia & Türkiye", "image":"images/hero-cappadocia-1.jpg" },
+    "featured_balloon_tours": [
+      {"id":"b1","title":"Sunrise Classic","price":"€300","img":"images/balloon-1.jpg"},
+      {"id":"b2","title":"Comfort Package","price":"€420","img":"images/balloon-2.jpg"},
+      {"id":"b3","title":"Private Flight","price":"€900","img":"images/balloon-3.jpg"}
+    ],
+    "tours_tr": [ /* 10 adet, coming soon */ ],
+    "destinations": [ /* 10 adet */ ],
+    "activities": [ /* 9 adet */ ]
+  }
+}
 
-Filter Bar: kategori butonları + search.
+12) Teslim edilecekler (müşteriye demo)
 
-Destinasyon Grid: kart tabanlı.
+index.html (ana sayfa, responsive)
 
-Footer: contact, TURSAB no., sosyal, çalışma saatleri.
+coming-soon.html (turlar için yönlendirme)
 
-(İsterseniz bu bileşenlerin her biri için tek dosyalık HTML partial/komponent taslağı hazırlarım — ama burada PDD içinde bileşen listesi verdim.)
+css/styles.css + js/main.js (minimal)
 
-11 — İçerik Migrasyonu Planı (adım adım, işlemsel)
+images/ (örnek görseller düşük çözünürlü demo)
 
-Eski siteden tüm metinleri çek (About, Tours, Destinations, Contact). (mevcut içerik görüntülendi). 
-capahenastravel.com
+README: deploy / CDN talimatları (Netlify / Vercel / S3).
 
-Fotoğrafları klasör yapısına geçir, optimize et, isimlendir (tur-slug-1.jpg → tur-slug-1.webp).
+13) Hızlı UX notları (önceliklendirme)
 
-Her tur için slug oluştur (örn: green-tour.html) ve tur meta verilerini (süre, max kişi, fiyat) frontmatter/JSON olarak sakla.
+Hero + Book CTA — dönüşümün merkezinde.
 
-Template'leri Cursor içinde kur — header/footer partial + tour-detail template.
+Öne çıkan 3 balloon turu — tipik ziyaretçiyi yakalar.
 
-Test: mobil, erişilebilirlik, hız (Lighthouse).
+Türkiye turlarının listesi — arama/filtre (kısa kısa kart).
 
-Yayın: statik hosting (Netlify, Vercel, GitHub Pages).
+Galeri + Reviews — sosyal kanıt, sayfada scroll retention sağlar.
 
-12 — Örnek İçerik & Kısa Metinler (kopya hazır)
+Coming soon linkleri açık olmalı (müşteri demo için).
 
-Hero başlığı (EN):
-Enjoy Cappadocia with Capahenas Travel
-Hero alt (EN):
-Authentic small-group tours, hot air balloon flights, transfers and local experiences from Göreme. 
-capahenastravel.com
+14) Kaynakça (inceleme dayanakları)
 
-Tour card short (EN):
-Green Tour (South) — Full day · 09:30–18:00 · From €40 pp · Book Now
+Turquaz Balloons — hero, paket kartları, yorumlar ve rezervasyon odaklı UX. 
+turquazballoons.com
 
-13 — Teknik Notlar (Cursor / Prototip için)
+Balloonscanner — listeleme + filtre yaklaşımı, grid gösterimler. 
+balloonscanner.com
 
-Cursor'a yüklerken: tek HTML dosyası yerine component-based (partials) organize et. Cursor editöründe canlı preview için index.html + assets/ yeterli.
-
-Tailwind/vanilla CSS tercih edilebilir; Tailwind ile Cursor içinde hızlı prototip + responsive sınıfları kolay olur.
-
-JavaScript minimum: menü, mobile nav, lazy load, booking modal. Rezervasyon backend gerekmiyorsa WhatsApp + mailto yeterli.
-
-14 — Riskler & Öneriler
-
-Görsel izinleri: eski siteden alınan görseller için kullanım hakları kontrolü.
-
-Fiyatların güncelliği: turların fiyatları değişebilir — içerik sahibi ile teyit edin.
-
-Rezervasyon akışı: eğer ileride online ödeme ekleyecekseniz altyapı (Stripe, iyzico vb.) planlanmalı.
-
-15 — Teslim Edilecekler (Cursor hazır)
-
-index.html (hero, featured tours, destinations)
-
-/tours/*.html (her tur için detay sayfası)
-
-/balloons/*.html
-
-/destinations/*.html
-
-/contact.html, /about.html
-
-assets/ (CSS, JS, optimized images)
-
-seo/ (JSON-LD snippets, meta templates)
-
-README.md — deploy talimatları (Netlify / Vercel / GitHub Pages)
-
-16 — Hızlı Başlangıç Checklist (Cursor içinde hemen yapılacaklar)
-
- Proje klasörü oluştur (/src, /assets)
-
- Header/Footer partial şablonu kur
-
- index.html hero + featured tours kartları yerleştir (Capahenas içeriklerinden alınan başlık/fiyatlarla) 
-capahenastravel.com
-
- WhatsApp sabit CTA ekle (header + sticky mobile) — eski sitede zaten mevcut. 
-capahenastravel.com
-
- Basit JSON-LD Organization ekle
-
-Kaynaklar / İnceleme notları
-
-GoTürkiye — ana sayfa, kartlı destinasyon/experience düzeni, sürdürülebilirlik vurgusu (ilham kaynağı). 
-GoTürkiye
-
-Capahenas Travel — mevcut içerik, tur listesi, balloon flight tipleri, iletişim ve TURSAB üye numarası (taşınacak içerikler). 
-capahenastravel.com
+Örnek görsel arama: Cappadocia hot air balloon görseller (örnek galeri görselleri).
