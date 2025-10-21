@@ -1,13 +1,58 @@
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --radius: 12px;
+  --color-text: #0F172A;
+  --color-muted: #64748B;
+  --color-accent1: #BE185D;
 }
 
 .container-max {
   max-width: 1200px;
 }
 
+.text-text {
+  color: var(--color-text);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.text-accent1 {
+  color: var(--color-accent1);
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
 /* GLightbox fit-to-viewport for images */
 .glightbox-container { overflow: hidden; outline: none; }
+
+/* Custom Swiper Navigation */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    color: #0F172A !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: #f8f8f8;
+}
 .glightbox-open { overflow: hidden; }
 .glightbox .ginner-container,
 .glightbox-clean .ginner-container,

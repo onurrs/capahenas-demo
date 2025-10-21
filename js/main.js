@@ -29,19 +29,6 @@
     // Year
     const y = $('#y'); if (y) y.textContent = new Date().getFullYear()
 
-    // Swiper (reviews)
-    if (window.Swiper) {
-      new Swiper('#reviews-swiper', {
-        loop: true,
-        autoHeight: true,
-        speed: 600,
-        pagination: false,
-        slidesPerView: 1,
-        spaceBetween: 16,
-        autoplay: { delay: 2500, disableOnInteraction: false },
-        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
-      })
-    }
 
     // GLightbox
     if (window.GLightbox) {
