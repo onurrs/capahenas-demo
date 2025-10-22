@@ -169,8 +169,50 @@ I am extremely happy to have used his services.`},
                         slidesPerView: 3,
                         centeredSlides: false
                     }
+                },
+                // Event listeners for hiding swipe hint
+                on: {
+                    slideChange: function () {
+                        this.hideSwipeHint();
+                    },
+                    touchStart: function () {
+                        this.hideSwipeHint();
+                    },
+                    touchMove: function () {
+                        this.hideSwipeHint();
+                    }
                 }
             });
+
+            // Hide swipe hint function
+            window.reviewsSwiper.hideSwipeHint = function() {
+                const swipeHint = document.getElementById('swipe-hint');
+                if (swipeHint) {
+                    swipeHint.style.opacity = '0';
+                    swipeHint.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => {
+                        swipeHint.style.display = 'none';
+                    }, 500);
+                }
+            };
+
+            // Hide hint on navigation button clicks
+            const nextBtn = document.querySelector('.swiper-button-next');
+            const prevBtn = document.querySelector('.swiper-button-prev');
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => window.reviewsSwiper.hideSwipeHint());
+            }
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => window.reviewsSwiper.hideSwipeHint());
+            }
+
+            // Auto-hide hint after 8 seconds
+            setTimeout(() => {
+                if (window.reviewsSwiper && window.reviewsSwiper.hideSwipeHint) {
+                    window.reviewsSwiper.hideSwipeHint();
+                }
+            }, 8000);
 
             // Kesinlikle otomatik kaydırmayı devre dışı bırak
             if (window.reviewsSwiper.autoplay) {

@@ -9,6 +9,40 @@ html {
   --color-accent1: #BE185D;
 }
 
+/* SweetAlert2 Custom Styles */
+.swal2-popup {
+  border-radius: 12px;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.swal2-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-text);
+}
+
+.swal-html-container {
+  margin: 1rem 0;
+}
+
+.swal-html-container .bg-gray-50 {
+  background-color: #f9fafb;
+  border-radius: 8px;
+}
+
+.swal2-confirm {
+  background: linear-gradient(to right, #DCA47C, #FFD3B6) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* Sticky header support */
+header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
+}
+
 .container-max {
   max-width: 1200px;
 }
@@ -103,8 +137,48 @@ html {
 /* Stagger helper */
 [data-anim-child] { transition-delay: var(--d, 0ms); }
 
+/* Swipe Indicator Animations */
+@keyframes slide-left {
+  0% { 
+    opacity: 0.3; 
+    transform: translateX(0px); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: translateX(-8px); 
+  }
+  100% { 
+    opacity: 0.3; 
+    transform: translateX(-16px); 
+  }
+}
+
+.animate-slide-left {
+  animation: slide-left 2s ease-in-out infinite;
+}
+
+#swipe-hint {
+  animation: fadeInOut 4s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { 
+    opacity: 0.4; 
+  }
+  50% { 
+    opacity: 0.8; 
+  }
+}
+
+/* Hide swipe hint after interaction */
+#reviews-swiper.swiper-initialized ~ * #swipe-hint {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-init, .animate-in { transition: none; opacity: 1 !important; transform: none !important; }
+  .animate-slide-left, #swipe-hint { animation: none !important; }
 }
 

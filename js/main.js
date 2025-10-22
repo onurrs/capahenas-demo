@@ -1,6 +1,6 @@
 // Main initialization for Capahenas Travel
 (function () {
-  document.addEventListener('DOMContentLoaded', () => {
+  function initializeApp() {
     // Mobile menu toggle
     const menuBtn = document.getElementById('mobile-menu-btn')
     const mainNav = document.getElementById('main-nav')
@@ -90,10 +90,7 @@
       })
     }
 
-    // i18n menu
-    window.CapahenasI18N.buildLanguageMenu('lang-menu', 'lang-toggle')
-    if (!localStorage.getItem('lang')) localStorage.setItem('lang', 'en')
-    window.CapahenasI18N.applyI18n()
+
 
     // Scroll reveal animations
     const animated = document.querySelectorAll('[data-anim]')
@@ -116,7 +113,11 @@
       }, { threshold: 0.12 })
       animated.forEach(el => io.observe(el))
     }
-  })
+  }
+
+  // Initialize on DOM load and make available globally
+  document.addEventListener('DOMContentLoaded', initializeApp);
+  window.initializeApp = initializeApp;
 })()
 
 
