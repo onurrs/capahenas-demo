@@ -87,6 +87,67 @@ header {
 .swiper-button-prev:hover {
     background-color: #f8f8f8;
 }
+
+/* Reviews Section Container - Position buttons relative to this */
+section[aria-labelledby="reviews-title"] {
+    position: relative;
+}
+
+section[aria-labelledby="reviews-title"] .container-max {
+    position: relative;
+    padding: 0 60px; /* Add padding to make space for buttons */
+}
+
+/* Reviews Swiper Navigation - Keep content overflow hidden */
+#reviews-swiper {
+    position: relative;
+    overflow: hidden !important; /* Hide overflowing slides */
+    margin: 0; /* Remove margin, use container padding instead */
+}
+
+/* Position buttons relative to the section, not the swiper */
+section[aria-labelledby="reviews-title"] .swiper-button-next,
+section[aria-labelledby="reviews-title"] .swiper-button-prev {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+    margin-top: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 40px !important;
+    height: 40px !important;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    color: #0F172A !important;
+}
+
+section[aria-labelledby="reviews-title"] .swiper-button-prev {
+    left: 10px !important;
+}
+
+section[aria-labelledby="reviews-title"] .swiper-button-next {
+    right: 10px !important;
+}
+
+/* Responsive button positioning */
+@media (max-width: 1024px) {
+    section[aria-labelledby="reviews-title"] .container-max {
+        padding: 0 50px; /* Reduce padding on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    section[aria-labelledby="reviews-title"] .container-max {
+        padding: 0 16px; /* Reset to normal padding on mobile */
+    }
+    
+    section[aria-labelledby="reviews-title"] .swiper-button-next,
+    section[aria-labelledby="reviews-title"] .swiper-button-prev {
+        display: none !important;
+    }
+}
 .glightbox-open { overflow: hidden; }
 .glightbox .ginner-container,
 .glightbox-clean .ginner-container,
@@ -176,9 +237,136 @@ header {
   transition: opacity 0.5s ease;
 }
 
+/* Reviews Swiper Custom Styles */
+.reviews-swiper {
+  padding: 20px 0 50px 0 !important;
+  overflow: visible;
+}
+
+.reviews-swiper .swiper-slide {
+  height: auto;
+}
+
+/* External Navigation Buttons */
+.reviews-prev-external,
+.reviews-next-external {
+  transition: all 0.3s ease;
+}
+
+.reviews-prev-external:hover,
+.reviews-next-external:hover {
+  transform: scale(1.05);
+}
+
+.reviews-prev-external:disabled,
+.reviews-next-external:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.reviews-prev-external:disabled:hover,
+.reviews-next-external:disabled:hover {
+  background: white !important;
+  border-color: #e5e7eb !important;
+  transform: none !important;
+}
+
+/* Custom Pagination */
+.reviews-swiper .swiper-pagination {
+  position: relative;
+  margin-top: 20px;
+}
+
+.reviews-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #cbd5e1;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.reviews-swiper .swiper-pagination-bullet-active {
+  background: #DCA47C;
+  transform: scale(1.2);
+}
+
+/* Review Card Styling */
+.line-clamp-6 {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .reviews-swiper {
+    padding: 10px 0 40px 0 !important;
+  }
+  
+  .reviews-swiper .swiper-button-next,
+  .reviews-swiper .swiper-button-prev {
+    width: 36px;
+    height: 36px;
+    margin-top: -18px;
+  }
+  
+  .reviews-swiper .swiper-button-next::after,
+  .reviews-swiper .swiper-button-prev::after {
+    font-size: 14px;
+  }
+}
+
+/* Customize scrollbar for review text */
+.review-text-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.review-text-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.review-text-container::-webkit-scrollbar-thumb {
+  background: #DCA47C;
+  border-radius: 2px;
+}
+
+/* Turkey Tours Cards Alignment */
+#turkey-tours .grid {
+  align-items: stretch;
+}
+
+#turkey-tours article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#turkey-tours article .p-3 {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#turkey-tours article .mt-3 {
+  margin-top: auto;
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-init, .animate-in { transition: none; opacity: 1 !important; transform: none !important; }
   .animate-slide-left, #swipe-hint { animation: none !important; }
+  .reviews-swiper .swiper-button-next,
+  .reviews-swiper .swiper-button-prev,
+  .reviews-swiper .swiper-pagination-bullet {
+    transition: none !important;
+  }
+  .review-text-container::-webkit-scrollbar-thumb,
+  .review-text-container::after {
+    transition: none !important;
+  }
 }
 
