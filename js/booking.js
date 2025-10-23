@@ -390,10 +390,23 @@
     }
   }
 
+  // Get maximum passengers based on flight type
+  function getMaxPassengers() {
+    const flightTypeInput = document.getElementById('flight-type');
+    const flightType = flightTypeInput ? flightTypeInput.value : 'Standard Flight';
+    
+    if (flightType === 'Comfort Flight') {
+      return 28;
+    } else if (flightType === 'Private Flight') {
+      return 20;
+    }
+    return 32; // Default for Standard Flight
+  }
+
   function initPassengerControls() {
     // Adults controls
     document.getElementById('adults-plus')?.addEventListener('click', () => {
-      if (adultsCount + childrenCount < 32) { // Standard flight max capacity
+      if (adultsCount + childrenCount < getMaxPassengers()) {
         adultsCount++;
         updatePassengerCount();
       }
@@ -408,7 +421,7 @@
 
     // Children controls
     document.getElementById('children-plus')?.addEventListener('click', () => {
-      if (adultsCount + childrenCount < 32) { // Standard flight max capacity
+      if (adultsCount + childrenCount < getMaxPassengers()) {
         childrenCount++;
         updatePassengerCount();
       }
@@ -510,20 +523,32 @@
         return;
       }
 
-      // Validate total passengers (max 32 for Standard Flight)
+      // Get flight type from hidden input
+      const flightTypeInput = document.getElementById('flight-type');
+      const flightType = flightTypeInput ? flightTypeInput.value : 'Unknown Flight Type';
+
+      // Set maximum passengers based on flight type
+      let maxPassengers = 32; // Default for Standard Flight
+      if (flightType === 'Comfort Flight') {
+        maxPassengers = 28;
+      } else if (flightType === 'Private Flight') {
+        maxPassengers = 20;
+      }
+
+      // Validate total passengers
       const totalPassengers = adultsCount + childrenCount;
-      if (totalPassengers > 32) {
+      if (totalPassengers > maxPassengers) {
         Swal.fire({
           icon: 'error',
           title: 'Too Many Passengers',
-          text: 'Maximum 32 passengers allowed for Standard Flight.',
+          text: `Maximum ${maxPassengers} passengers allowed for ${flightType}.`,
           confirmButtonColor: '#DCA47C'
         });
         return;
       }
 
       const bookingData = {
-        flightType: 'Standard Flight',
+        flightType: flightType,
         date: selectedDate.toLocaleDateString('en-US', { 
           weekday: 'long', 
           year: 'numeric', 
