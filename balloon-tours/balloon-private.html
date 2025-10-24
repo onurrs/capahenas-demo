@@ -237,7 +237,7 @@
   <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
     <!-- Background Video/Image -->
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2000&auto=format&fit=crop" 
+      <img src="../images/balloon-tours/hero/hero.jpg" 
            alt="Cappadocia Balloon Flight" 
            class="w-full h-full object-cover">
       <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
@@ -425,7 +425,7 @@
           </div>
           
           <!-- Premium Gallery Section -->
-          <div class="bg-white rounded-2xl shadow-cardLg overflow-hidden border border-gray-100">
+          <div class="bg-white rounded-2xl shadow-cardLg overflow-hidden border border-gray-100 relative">
             <div class="px-8 py-6 border-b border-gray-100">
               <h3 class="text-xl font-playfair font-semibold flex items-center gap-2">
                 <span class="w-2 h-2 bg-accent2 rounded-full"></span>
@@ -434,22 +434,24 @@
               <p class="text-gray-600 mt-1">See what awaits you in the sky</p>
             </div>
             <div class="p-6">
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="aspect-square rounded-xl overflow-hidden group cursor-pointer">
-                  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&crop=center" 
-                       alt="Balloon View 1" 
-                       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                </div>
-                <div class="aspect-square rounded-xl overflow-hidden group cursor-pointer">
-                  <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop&crop=center" 
-                       alt="Balloon View 2" 
-                       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                </div>
-                <div class="aspect-square rounded-xl overflow-hidden group cursor-pointer md:col-span-1 col-span-2">
-                  <img src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=400&h=400&fit=crop&crop=center" 
-                       alt="Balloon View 3" 
-                       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                </div>
+              <div id="balloon-gallery" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Images will be loaded dynamically -->
+              </div>
+              <div id="gallery-overlay" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white to-transparent pt-8 pb-6 flex justify-center">
+                <button id="show-more-btn" class="bg-white border-2 border-gray-200 hover:border-accent1 text-gray-700 hover:text-accent1 px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md">
+                  Show more 
+                  <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+              </div>
+              <div id="show-less-container" class="mt-6 flex justify-center" style="display: none;">
+                <button id="show-less-btn" class="bg-white border-2 border-gray-200 hover:border-accent1 text-gray-700 hover:text-accent1 px-6 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md">
+                  Show less
+                  <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -807,6 +809,180 @@
   <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/addons/cleave-phone.i18n.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/booking.js"></script>
+
+  <!-- Gallery Images Loader -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Array of all balloon private images
+      const balloonImages = [
+        '1ba4265b56.jpg',
+        '2cb0a5bef9.jpg',
+        '2f3c0fc3c2.jpg',
+        '6c648a64d8.jpg',
+        '6e5a1d3d98.jpg',
+        '7f35a72fd7.jpg',
+        '95cabcf697.jpg',
+        'b6a9479e47.jpg',
+        'd806b760dd.jpg',
+        'd869a6ec7a.jpg',
+        'eca6757220.jpg',
+        'ee07522e21.jpg',
+        'fc234ef5c1.jpg'
+      ];
+
+      const galleryContainer = document.getElementById('balloon-gallery');
+      const showMoreBtn = document.getElementById('show-more-btn');
+      const showLessBtn = document.getElementById('show-less-btn');
+      const showLessContainer = document.getElementById('show-less-container');
+      const galleryOverlay = document.getElementById('gallery-overlay');
+      let isExpanded = false;
+      let lightbox;
+      
+      // Clear existing content
+      galleryContainer.innerHTML = '';
+      
+      // Function to create gallery item
+      function createGalleryItem(imageName, index) {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'aspect-square rounded-xl overflow-hidden group cursor-pointer gallery-item';
+        
+        galleryItem.innerHTML = `
+          <img src="../images/balloon-tours/balloon-private/${imageName}" 
+               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+               loading="lazy">
+        `;
+        
+        return galleryItem;
+      }
+
+      // Initially load first 6 images (2 rows)
+      function loadInitialImages() {
+        for (let i = 0; i < Math.min(6, balloonImages.length); i++) {
+          const galleryItem = createGalleryItem(balloonImages[i], i);
+          galleryContainer.appendChild(galleryItem);
+        }
+      }
+
+      // Load remaining images
+      function loadRemainingImages() {
+        for (let i = 6; i < balloonImages.length; i++) {
+          const galleryItem = createGalleryItem(balloonImages[i], i);
+          galleryItem.style.display = 'none';
+          galleryItem.classList.add('hidden-item');
+          galleryContainer.appendChild(galleryItem);
+        }
+      }
+
+      // Show more functionality
+      function expandGallery() {
+        const hiddenItems = document.querySelectorAll('.hidden-item');
+        
+        hiddenItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.display = 'block';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+              item.style.transition = 'all 0.3s ease';
+            }, 10);
+          }, index * 100);
+        });
+
+        // Hide overlay and button, show "Show less" button
+        galleryOverlay.style.opacity = '0';
+        setTimeout(() => {
+          galleryOverlay.style.display = 'none';
+          showLessContainer.style.display = 'flex';
+          showLessContainer.style.opacity = '0';
+          setTimeout(() => {
+            showLessContainer.style.opacity = '1';
+            showLessContainer.style.transition = 'opacity 0.3s ease';
+          }, 100);
+        }, 300);
+
+        isExpanded = true;
+        
+        // Reinitialize lightbox with all images
+        setTimeout(() => {
+          if (lightbox) lightbox.destroy();
+          lightbox = GLightbox({
+            selector: '#balloon-gallery img',
+            touchNavigation: true,
+            loop: true,
+            autoplayVideos: true
+          });
+        }, 500);
+      }
+
+      // Collapse gallery function
+      function collapseGallery() {
+        const hiddenItems = document.querySelectorAll('.hidden-item');
+        
+        // Hide additional images with animation
+        hiddenItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
+          }, index * 50);
+        });
+
+        // Hide "Show less" button and show "Show more" overlay
+        showLessContainer.style.opacity = '0';
+        setTimeout(() => {
+          showLessContainer.style.display = 'none';
+          galleryOverlay.style.display = 'flex';
+          galleryOverlay.style.opacity = '0';
+          setTimeout(() => {
+            galleryOverlay.style.opacity = '1';
+          }, 100);
+        }, 300);
+
+        isExpanded = false;
+        
+        // Reinitialize lightbox with only first 6 images
+        setTimeout(() => {
+          if (lightbox) lightbox.destroy();
+          lightbox = GLightbox({
+            selector: '#balloon-gallery img',
+            touchNavigation: true,
+            loop: true,
+            autoplayVideos: true
+          });
+        }, 500);
+
+        // Smooth scroll to gallery top
+        document.getElementById('balloon-gallery').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+
+      // Initialize gallery
+      loadInitialImages();
+      loadRemainingImages();
+
+      // Add click events to buttons
+      showMoreBtn.addEventListener('click', expandGallery);
+      showLessBtn.addEventListener('click', collapseGallery);
+
+      // Initialize GLightbox for initial images
+      setTimeout(() => {
+        lightbox = GLightbox({
+          selector: '#balloon-gallery img',
+          touchNavigation: true,
+          loop: true,
+          autoplayVideos: true
+        });
+      }, 100);
+    });
+  </script>
 
   <!-- Premium Floating WhatsApp Button -->
   <a id="whatsapp-fab" href="https://wa.me/903842712155?text=Hello%20Capahenas%20Travel!" target="_blank" rel="noopener"
