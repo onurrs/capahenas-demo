@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Horse Riding in Cappadocia — Capahenas Travel</title>
+  <title>ATV Tour in Cappadocia — Capahenas Travel</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
@@ -12,7 +12,7 @@
   <link rel="shortcut icon" href="../images/favicon.png">
 
   <!-- Meta / SEO -->
-  <meta name="description" content="Experience Cappadocia's beautiful landscapes on horseback. Trail rides through stunning valleys and fairy chimneys." />
+  <meta name="description" content="Experience Cappadocia's epic landscapes on an ATV (quad bike). Sunset rides through fairy chimneys, valleys, and panoramic viewpoints." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,6 +71,38 @@
   </script>
 
   <style>
+    /* Base mobile-first styles */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Container constraints */
+    .container-max {
+      width: 100%;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .container-max {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .container-max {
+        max-width: 1280px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
     .premium-glass {
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -103,7 +135,7 @@
     }
 
     /* Custom Swiper Styles */
-    .horseGallerySwiper {
+    .atvGallerySwiper {
       position: relative;
       border-radius: 12px;
       overflow: hidden;
@@ -112,13 +144,13 @@
       height: auto;
     }
 
-    .horseGallerySwiper .swiper-wrapper {
+    .atvGallerySwiper .swiper-wrapper {
       display: flex;
       width: 100%;
       height: auto !important;
     }
 
-    .horseGallerySwiper .swiper-slide {
+    .atvGallerySwiper .swiper-slide {
       position: relative;
       width: 100% !important;
       flex: 0 0 100%;
@@ -126,7 +158,7 @@
       height: auto !important;
     }
 
-    .horseGallerySwiper .swiper-slide img {
+    .atvGallerySwiper .swiper-slide img {
       position: absolute;
       top: 0;
       left: 0;
@@ -136,8 +168,8 @@
       display: block;
     }
     
-    .horseGallerySwiper .swiper-button-next,
-    .horseGallerySwiper .swiper-button-prev {
+    .atvGallerySwiper .swiper-button-next,
+    .atvGallerySwiper .swiper-button-prev {
       width: 40px !important;
       height: 40px !important;
       margin-top: -20px !important;
@@ -152,34 +184,34 @@
       -ms-user-select: none !important;
     }
     
-    .horseGallerySwiper .swiper-button-next:hover,
-    .horseGallerySwiper .swiper-button-prev:hover {
+    .atvGallerySwiper .swiper-button-next:hover,
+    .atvGallerySwiper .swiper-button-prev:hover {
       background: white !important;
       transform: scale(1.1) !important;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
     }
     
-    .horseGallerySwiper .swiper-button-next::after,
-    .horseGallerySwiper .swiper-button-prev::after {
+    .atvGallerySwiper .swiper-button-next::after,
+    .atvGallerySwiper .swiper-button-prev::after {
       font-size: 18px !important;
       font-weight: bold !important;
       font-family: Arial, sans-serif !important;
       line-height: 1 !important;
     }
     
-    .horseGallerySwiper .swiper-button-next::after {
+    .atvGallerySwiper .swiper-button-next::after {
       content: '❯' !important;
     }
     
-    .horseGallerySwiper .swiper-button-prev::after {
+    .atvGallerySwiper .swiper-button-prev::after {
       content: '❮' !important;
     }
     
-    .horseGallerySwiper .swiper-pagination {
+    .atvGallerySwiper .swiper-pagination {
       bottom: 16px !important;
     }
     
-    .horseGallerySwiper .swiper-pagination-bullet {
+    .atvGallerySwiper .swiper-pagination-bullet {
       width: 12px !important;
       height: 12px !important;
       background: rgba(255, 255, 255, 0.7) !important;
@@ -187,7 +219,7 @@
       transition: all 0.3s ease !important;
     }
     
-    .horseGallerySwiper .swiper-pagination-bullet-active {
+    .atvGallerySwiper .swiper-pagination-bullet-active {
       background: #DCA47C !important;
       transform: scale(1.2) !important;
     }
@@ -347,8 +379,8 @@
   <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">
     <!-- Background Image -->
     <div class="absolute inset-0">
-      <img src="../images/cappadocia-tours/horse-riding/hero.jpg" 
-           alt="Horse Riding in Cappadocia" 
+   <img src="../images/cappadocia-tours/atv-tour/hero.jpg" 
+     alt="ATV Tour in Cappadocia" 
            class="w-full h-full object-cover">
       <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
     </div>
@@ -357,113 +389,114 @@
     <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
       <div class="mb-4">
         <span class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium border border-white/30">
-          🐎 Land of Beautiful Horses
+          🏍️ Cappadocia ATV Rides
         </span>
       </div>
       <h1 class="text-4xl md:text-6xl font-playfair font-bold mb-4 leading-tight">
-        Horse Riding
+        ATV Tour
         <span class="block text-2xl md:text-3xl font-normal mt-2 text-accent2">
-          Through Cappadocia's Valleys
+          Across Cappadocia's Valleys
         </span>
       </h1>
       <p class="text-lg md:text-xl text-white/90 mb-6 max-w-2xl mx-auto leading-relaxed">
-        Explore the stunning landscapes of Cappadocia on horseback, riding through ancient valleys and fairy chimneys.
+        Feel the adrenaline as you ride your ATV through Cappadocia’s otherworldly valleys, fairy chimneys, and panoramic viewpoints.
       </p>
     </div>
   </section>
 
   <!-- Main Content -->
-  <main class="py-16 bg-gradient-to-b from-gray-50 to-white">
-    <div class="mx-auto container-max px-4 md:px-6">
-      <div class="grid lg:grid-cols-5 gap-8 xl:gap-12 items-start">
+  <main class="py-8 md:py-16 bg-gradient-to-b from-gray-50 to-white">
+    <div class="mx-auto container-max">
+      <div class="grid lg:grid-cols-5 gap-4 md:gap-8 xl:gap-12 items-start">
         
         <!-- Left Column - Tour Details (3 columns) -->
-        <div class="lg:col-span-3">
+        <div class="lg:col-span-3 w-full">
           
           <!-- Photo Gallery / Carousel -->
-          <div class="bg-white rounded-2xl shadow-cardLg overflow-hidden mb-8 border border-gray-100">
-            <div class="px-8 py-6 border-b border-gray-100">
+          <div class="bg-white rounded-2xl shadow-cardLg overflow-hidden mb-8 border border-gray-100 w-full">
+            <div class="px-4 md:px-8 py-4 md:py-6 border-b border-gray-100">
               <h3 class="text-xl font-playfair font-semibold flex items-center gap-2">
                 <span class="w-2 h-2 bg-accent2 rounded-full"></span>
                 Experience Gallery
               </h3>
-              <p class="text-gray-600 mt-1">Discover the beauty of horseback riding in Cappadocia</p>
+              <p class="text-gray-600 mt-1">Feel the thrill of ATV riding in Cappadocia</p>
             </div>
-            <div class="p-6">
+            <div class="p-4 md:p-6 w-full">
               <!-- Swiper Carousel -->
-              <div class="swiper horseGallerySwiper">
+              <div class="swiper atvGallerySwiper">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/horse1.jpg" 
-                           alt="Horse riding in valleys" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-[16/9] w-full rounded-xl overflow-hidden group">
+                      <img src="../images/cappadocia-tours/atv-tour/atv1.jpg" 
+                           alt="ATV riding in valleys" 
+                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                           loading="lazy">
                     </div>
                   </div>
                   <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/horse2.jpg" 
+                    <div class="aspect-[16/9] w-full rounded-xl overflow-hidden group">
+                      <img src="../images/cappadocia-tours/atv-tour/atv2.jpg" 
                            alt="Fairy chimneys landscape" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                           loading="lazy">
                     </div>
                   </div>
                   <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/horse3.jpg" 
-                           alt="Cappadocia landscape" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-[16/9] w-full rounded-xl overflow-hidden group">
+                      <img src="../images/cappadocia-tours/atv-tour/atv3.jpg" 
+                           alt="Cappadocia landscape with ATVs" 
+                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                           loading="lazy">
                     </div>
                   </div>
                   <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/horse4.jpg" 
-                           alt="Horse riding adventure" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-[4/3] w-full rounded-xl overflow-hidden group">
+                      <img src="../images/cappadocia-tours/atv-tour/atv4.jpg" 
+                           alt="ATV tour adventure" 
+                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                           loading="lazy">
                     </div>
                   </div>
                   <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/horse5.jpg" 
-                           alt="Horse riding adventure" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-[4/3] w-full rounded-xl overflow-hidden group">
+                      <img src="../images/cappadocia-tours/atv-tour/atv5.jpg" 
+                           alt="ATV tour adventure" 
+                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                           loading="lazy">
                     </div>
                   </div>
                   <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/horse6.jpg" 
-                           alt="Horse riding adventure" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-[4/3] w-full rounded-xl overflow-hidden group">
+                      <img src="../images/cappadocia-tours/atv-tour/atv6.jpg" 
+                           alt="ATV tour adventure" 
+                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                           loading="lazy">
                     </div>
                   </div>
                   <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/horse7.jpg" 
-                           alt="Horse riding adventure" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-[4/3] w-full rounded-xl overflow-hidden group">
+                      <img src="../images/cappadocia-tours/atv-tour/atv7.jpg" 
+                           alt="ATV tour adventure" 
+                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                           loading="lazy">
                     </div>
                   </div>
                   <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/horse8.jpg" 
-                           alt="Horse riding adventure" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden group">
-                      <img src="../images/cappadocia-tours/horse-riding/hero.jpg" 
-                           alt="Horse riding adventure" 
-                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-[4/3] w-full rounded-xl overflow-hidden group">
+                      <img src="../images/cappadocia-tours/atv-tour/hero.jpg" 
+                           alt="ATV tour adventure" 
+                           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                           loading="lazy">
                     </div>
                   </div>
                 </div>
                 
                 <!-- Navigation buttons -->
-                <div class="swiper-button-next !text-accent1 !w-10 !h-10 !bg-white !rounded-full !shadow-lg after:!text-lg after:!font-bold"></div>
-                <div class="swiper-button-prev !text-accent1 !w-10 !h-10 !bg-white !rounded-full !shadow-lg after:!text-lg after:!font-bold"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
                 
                 <!-- Pagination -->
-                <div class="swiper-pagination !bottom-4"></div>
+                <div class="swiper-pagination"></div>
               </div>
             </div>
           </div>
@@ -474,11 +507,11 @@
               <div class="flex items-center justify-between">
                 <div>
                   <h2 class="text-2xl font-playfair font-bold text-gray-900">About the Tour</h2>
-                  <p class="text-gray-600 mt-1">Discover Cappadocia on horseback</p>
+                  <p class="text-gray-600 mt-1">Discover Cappadocia by ATV</p>
                 </div>
                 <div class="text-right">
-                  <div class="text-lg font-semibold text-accent1">Horse</div>
-                  <div class="text-sm text-gray-500">Riding</div>
+                  <div class="text-lg font-semibold text-accent1">ATV</div>
+                  <div class="text-sm text-gray-500">Tour</div>
                 </div>
               </div>
             </div>
@@ -486,47 +519,46 @@
             <div class="px-8 py-6">
               <div class="prose prose-lg max-w-none">
                 <p class="text-gray-700 leading-relaxed text-lg mb-6">
-                  Cappadocia is known as <strong class="text-accent1">"Land of Beautiful Horses"</strong>, and it's the perfect place to ride horses. Cappadocia's history has been marked by horses for thousands of years. The unique landscapes surrounding Goreme make it a great place to ride a Turkish cowboy or native Anatolian horse.
+                  You can explore the undiscovered areas of Goreme with a sturdy quad ATV (quad bike). Half-day or full-day escorted tours offer an exciting adventure through the stunning Cappadocia landscape's hills, valleys, and dunes. The ATV Tours are escorted and last between 2 to 8 hours. The 2-hour tour, which includes a rider and separate vehicle, is our most popular. It costs 40 Euro per person. He will only show you the best way to go, and he won't be able explain any details about the area.
                 </p>
-                
-                <p class="text-gray-700 leading-relaxed text-lg mb-6">
-                  Enjoy a 2- to 4-hour trail ride away from the crowds to explore the stunning valleys and spectacular views around Goreme. We offer trail rides all day and multi-day horseback excursions.
-                </p>
-                
+
                 <div class="bg-gradient-to-r from-accent1/5 to-accent2/5 rounded-2xl p-6 border border-accent1/10 mb-6">
                   <h3 class="text-xl font-playfair font-semibold mb-4 text-gray-900">Tour Options</h3>
-                  
                   <div class="space-y-4">
                     <div class="flex items-start gap-4">
                       <div class="w-12 h-12 bg-accent1 rounded-full flex items-center justify-center flex-shrink-0">
                         <span class="text-white font-bold">2h</span>
                       </div>
                       <div>
-                        <h4 class="font-semibold text-gray-900 mb-2">2-Hour Tour - €35 per person</h4>
-                        <p class="text-gray-600 text-sm">This journey takes you through some of the most picturesque valleys in Cappadocia, including Swords Valley, Meskendir Valley (Rose Valley), and Love Valley. You will be able to ride among the quince, apple, walnut orchards, as well as grape vines that are used in local wines.</p>
+                        <h4 class="font-semibold text-gray-900 mb-2">Two-hour ATV ride</h4>
+                        <p class="text-gray-600 text-sm">Leave from Goreme or Cavusin(offroad), Rose Valley, Girls Monastery and Red Valley. ( 40 EUR per person).</p>
                       </div>
                     </div>
-                    
                     <div class="flex items-start gap-4">
                       <div class="w-12 h-12 bg-accent2 rounded-full flex items-center justify-center flex-shrink-0">
                         <span class="text-gray-800 font-bold">4h</span>
                       </div>
                       <div>
-                        <h4 class="font-semibold text-gray-900 mb-2">4-Hour Tour - €65 per person</h4>
-                        <p class="text-gray-600 text-sm">These tours include not only the listed valleys, but also the stunning Pigeon, White, and Zemi Valleys. Experience breathtaking views of mountain tops and unspoiled landscapes along the trail.</p>
+                        <h4 class="font-semibold text-gray-900 mb-2">4 Hour ATV Ride</h4>
+                        <p class="text-gray-600 text-sm">Leave from Goreme and Cavusin(offroad), RoSe Valleys, Girls Monasterys, Red Valleys, Swords Valleys, Love Valleys, Babatcik Valleys, Aydin Kiragis, Iceri Dere Valleys ( 80 Euro per Person).</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                      <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-gray-800 font-bold">FD</span>
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Full-day ATV ride</h4>
+                        <p class="text-gray-600 text-sm">Leave from Goreme and Cavusin(offroad), Red Valley, Girls Monastery Valley, Red Valley Valleys, Love Valleys.. ( 110 EUR per person).</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                
+
                 <p class="text-gray-700 leading-relaxed text-lg mb-6">
-                  You will pass beautiful fairy chimneys, churches and other structures as you climb through volcanic stone hills. There are breathtaking views of mountain tops and unspoiled landscapes along the trail.
+                  Because they are fully automated, our All Terrain Vehicles make it easy for adults to use. You will ride on tracks that are challenging but not scary. These tours are not open to children under 12 years of age . These rates are quadbike rates and not per per person.
                 </p>
-                
-                <p class="text-gray-700 leading-relaxed text-lg mb-6">
-                  We will require minimum 2 people for both the 2 hour and 4 hour tours. The tours cannot be arranged for one person. We are happy to provide more information about horseback riding in Cappadocia.
-                </p>
-                
+
                 <p class="text-gray-700 leading-relaxed text-lg">
                   Please send us an email from <a href="mailto:info@capahenastravel.com" class="text-accent1 hover:text-accent2 font-semibold">info@capahenastravel.com</a> to get further information and make your booking.
                 </p>
@@ -552,7 +584,16 @@
                   </div>
                   <span class="font-medium text-gray-900">Guide to follow</span>
                 </div>
-                
+
+                <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100">
+                  <div class="w-8 h-8 bg-accent1 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span class="font-medium text-gray-900">Oil for the bike</span>
+                </div>
+
                 <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100">
                   <div class="w-8 h-8 bg-accent1 rounded-full flex items-center justify-center flex-shrink-0">
                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -561,7 +602,7 @@
                   </div>
                   <span class="font-medium text-gray-900">Helmets</span>
                 </div>
-                
+
                 <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100">
                   <div class="w-8 h-8 bg-accent1 rounded-full flex items-center justify-center flex-shrink-0">
                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -570,7 +611,7 @@
                   </div>
                   <span class="font-medium text-gray-900">Pick-up from your hotel</span>
                 </div>
-                
+
                 <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100">
                   <div class="w-8 h-8 bg-accent1 rounded-full flex items-center justify-center flex-shrink-0">
                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -579,8 +620,8 @@
                   </div>
                   <span class="font-medium text-gray-900">Taxes and service charges</span>
                 </div>
-                
-                <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 md:col-span-2">
+
+                <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100">
                   <div class="w-8 h-8 bg-accent1 rounded-full flex items-center justify-center flex-shrink-0">
                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -609,12 +650,12 @@
                 
                 <div>
                   <h4 class="font-semibold text-gray-900 mb-3">Departure Time</h4>
-                  <p class="text-gray-600">From 10AM until sunset time</p>
+                  <p class="text-gray-600">from 10AM until sunset time</p>
                 </div>
                 
                 <div>
                   <h4 class="font-semibold text-gray-900 mb-3">Return Time</h4>
-                  <p class="text-gray-600">From 12:00 to until sunset time</p>
+                  <p class="text-gray-600">from 12:00 to until sunset time</p>
                 </div>
               </div>
             </div>
@@ -629,14 +670,34 @@
               </h3>
             </div>
             <div class="px-8 py-6">
-              <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-red-50 to-white rounded-xl border border-red-100">
-                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-                  </svg>
+                <div class="space-y-4">
+                  <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-red-50 to-white rounded-xl border border-red-100">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <span class="font-medium text-gray-900">Drinks</span>
+                  </div>
+
+                  <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-red-50 to-white rounded-xl border border-red-100">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <span class="font-medium text-gray-900">Personal Expenses</span>
+                  </div>
+
+                  <div class="flex items-center gap-3 p-4 bg-gradient-to-br from-red-50 to-white rounded-xl border border-red-100">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <span class="font-medium text-gray-900">Optional Tipping</span>
+                  </div>
                 </div>
-                <span class="font-medium text-gray-900">Optional Tipping</span>
-              </div>
             </div>
           </div>
         </div>
@@ -650,7 +711,7 @@
               <!-- Booking Header -->
               <div class="bg-gradient-to-r from-accent1 to-accent2 px-8 py-6 text-white">
                 <h3 class="text-2xl font-playfair font-bold mb-2">Book Your Tour Now!</h3>
-                <p class="text-white/90">Reserve your horse riding adventure</p>
+                <p class="text-white/90">Reserve your ATV adventure</p>
               </div>
 
               <div class="p-8 space-y-8">
@@ -709,7 +770,7 @@
                   
                   <form id="tour-booking-form" class="space-y-6">
                     <!-- Hidden input for tour type -->
-                    <input type="hidden" id="tour-type" value="Horse Riding Tour">
+                    <input type="hidden" id="tour-type" value="ATV Tour">
                     
                     <div>
                       <label for="name" class="block text-sm font-semibold mb-3 text-gray-700">Full Name *</label>
@@ -883,7 +944,7 @@
                       <div class="space-y-3">
                         <div class="flex justify-between items-center">
                           <span class="text-gray-600">Tour Type:</span>
-                          <span class="font-semibold text-gray-900">Horse Riding</span>
+                          <span class="font-semibold text-gray-900">ATV Tour</span>
                         </div>
                         <div class="flex justify-between items-center">
                           <span class="text-gray-600">Selected Date:</span>
@@ -991,12 +1052,12 @@
   <script src="../js/main.js"></script>
   <script src="../js/booking.js"></script>
 
-  <!-- Horse Riding Page Specific Scripts -->
+  <!-- ATV Tour Page Specific Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       
-      // Initialize Horse Gallery Swiper
-      const horseGallerySwiper = new Swiper('.horseGallerySwiper', {
+      // Initialize ATV Gallery Swiper (no auto-rotation)
+      const atvGallerySwiper = new Swiper('.atvGallerySwiper', {
         init: false,
         slidesPerView: 1,
         spaceBetween: 0,
@@ -1032,8 +1093,9 @@
 
       // Initialize after a brief delay to ensure proper sizing
       setTimeout(() => {
-        horseGallerySwiper.init();
+        atvGallerySwiper.init();
       }, 100);
+        
 
       // Calendar functionality (based on balloon tours calendar)
       let selectedDate = null;
@@ -1304,7 +1366,7 @@
           Swal.fire({
             icon: 'warning',
             title: 'Date Required',
-            text: 'Please select a date for your horse riding tour.',
+            text: 'Please select a date for your ATV tour.',
             confirmButtonColor: '#DCA47C'
           });
           return;
@@ -1359,7 +1421,7 @@
 
 
         const bookingData = {
-          tourType: 'Horse Riding Tour',
+          tourType: 'ATV Tour',
           date: selectedDate.toLocaleDateString('en-US', { 
             weekday: 'long', 
             year: 'numeric', 
@@ -1409,11 +1471,11 @@
         }
         
         // Create mailto link with all details
-        const subject = encodeURIComponent(`Horse Riding Tour Booking Request`);
+  const subject = encodeURIComponent(`ATV Tour Booking Request`);
         const body = encodeURIComponent(`
 Dear Capahenas Travel,
 
-I would like to request a booking for a horse riding tour with the following details:
+I would like to request a booking for an ATV tour with the following details:
 
 TOUR INFORMATION:
 - Tour Type: ${bookingData.tourType}
