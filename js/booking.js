@@ -1,3 +1,76 @@
+// ========================================
+// SUPABASE INTEGRATION
+// ========================================
+
+// Supabase Configuration
+// ⚠️ BURAYA SUPABASE BİLGİLERİNİZİ YAPIN (admin/index.html'deki ile aynı)
+const SUPABASE_URL = 'https://efvxjsdprydyvmotmtem.supabase.co'; // https://xxxxx.supabase.co
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmdnhqc2RwcnlkeXZtb3RtdGVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjQ2NzksImV4cCI6MjA3NzE0MDY3OX0.ZhBFbBZLXhAfFAsteVtULqoV9VB2b4Q1tMW8tRv6Fug'; // eyJhbGci...
+
+// Initialize Supabase Client (check if supabase is loaded)
+let supabaseClient = null;
+if (typeof supabase !== 'undefined') {
+  const { createClient } = supabase;
+  supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  console.log('✅ Supabase client initialized');
+} else {
+  console.warn('⚠️ Supabase library not loaded. Booking will use mailto only.');
+}
+
+/**
+ * Save booking to Supabase
+ */
+async function saveBookingToSupabase(bookingData) {
+  console.log('🔍 saveBookingToSupabase called');
+  console.log('🔍 supabaseClient exists:', !!supabaseClient);
+  
+  if (!supabaseClient) {
+    console.warn('⚠️ Supabase client not available, skipping database save');
+    return { success: false, error: 'Supabase not initialized' };
+  }
+
+  try {
+    console.log('📤 Inserting data into Supabase...');
+    
+    const insertData = {
+      customer_name: bookingData.name,
+      customer_email: bookingData.email,
+      customer_phone: bookingData.phone,
+      country_code: bookingData.countryCode,
+      tour_type: bookingData.tourType,
+      tour_date: bookingData.date,
+      persons: parseInt(bookingData.persons),
+      special_requests: bookingData.specialRequests || null,
+      status: 'pending'
+    };
+    
+    console.log('📋 Insert data:', insertData);
+    
+    const { data, error } = await supabaseClient
+      .from('bookings')
+      .insert([insertData])
+      .select();
+
+    if (error) {
+      console.error('❌ Supabase error:', error);
+      console.error('❌ Error details:', JSON.stringify(error, null, 2));
+      return { success: false, error: error.message };
+    }
+
+    console.log('✅ Booking saved to Supabase successfully!');
+    console.log('✅ Saved data:', data);
+    return { success: true, data: data[0] };
+  } catch (err) {
+    console.error('❌ Exception saving booking:', err);
+    console.error('❌ Exception details:', err.stack);
+    return { success: false, error: err.message };
+  }
+}
+
+// ========================================
+// ORIGINAL BOOKING CODE
+// ========================================
+
 // Balloon booking functionality
 (function() {
   let selectedDate = null;
@@ -608,47 +681,70 @@
         return;
       }
       
-      // Create mailto link with all details
-      const subject = encodeURIComponent(`Balloon Flight Booking Request - ${bookingData.flightType}`);
-      const body = encodeURIComponent(`
-Dear Capahenas Travel,
-
-I would like to request a booking for a balloon flight with the following details:
-
-FLIGHT INFORMATION:
-- Flight Type: ${bookingData.flightType}
-- Preferred Date: ${bookingData.date}
-- Number of Adults: ${bookingData.adults}
-- Number of Children: ${bookingData.children}
-- Total Passengers: ${bookingData.adults + bookingData.children}
-
-CONTACT INFORMATION:
-- Full Name: ${bookingData.name}
-- Email: ${bookingData.email}
-- Phone: ${bookingData.phone}
-
-Please send me more information about availability, pricing, and booking confirmation for this flight.
-
-Thank you!
-
-Best regards,
-${bookingData.name}
-      `);
+      // ========================================
+      // SUPABASE: Save booking to database
+      // ========================================
+      console.log('💾 Attempting to save booking to Supabase...');
+      console.log('Supabase Client Status:', supabaseClient ? '✅ Ready' : '❌ Not initialized');
       
-      // Open email client
-      window.location.href = `mailto:info@capahenastravel.com?subject=${subject}&body=${body}`;
+      // Get country code from select2
+      const countryCodeSelect = $('#country-code');
+      const countryCode = countryCodeSelect.val() || '+90';
       
-      // Show success message
-      setTimeout(() => {
-        Swal.fire({
+      const supabaseData = {
+        name: bookingData.name,
+        email: bookingData.email,
+        phone: bookingData.phone,
+        countryCode: countryCode,
+        tourType: bookingData.flightType,
+        date: selectedDate.toISOString().split('T')[0], // YYYY-MM-DD format
+        persons: bookingData.adults + bookingData.children,
+        specialRequests: `Adults: ${bookingData.adults}, Children: ${bookingData.children}`
+      };
+      
+      console.log('📦 Data to save:', supabaseData);
+      
+      const saveResult = await saveBookingToSupabase(supabaseData);
+      
+      if (saveResult.success) {
+        console.log('✅ Booking saved to database successfully!');
+        console.log('📊 Booking ID:', saveResult.data?.id);
+        
+        // Show success message
+        await Swal.fire({
           icon: 'success',
-          title: 'Request Prepared!',
-          text: 'Your booking request has been prepared! Please send the email that just opened to complete your request.',
-          confirmButtonColor: '#DCA47C',
-          timer: 5000,
-          timerProgressBar: true
+          title: 'Booking Submitted!',
+          html: `
+            <p class="text-gray-600 mb-4">Your booking request has been received successfully.</p>
+            <p class="text-sm text-gray-500">We will contact you soon to confirm your reservation.</p>
+          `,
+          confirmButtonText: 'Great!',
+          confirmButtonColor: '#DCA47C'
         });
-      }, 500);
+        
+        // Reset form
+        form.reset();
+        selectedDate = null;
+        document.getElementById('selected-date').textContent = 'Please select a date';
+        document.getElementById('adults-count').textContent = '2';
+        document.getElementById('children-count').textContent = '0';
+        
+      } else {
+        console.error('❌ Failed to save to database:', saveResult.error);
+        
+        // Show error message
+        await Swal.fire({
+          icon: 'error',
+          title: 'Submission Error',
+          html: `
+            <p class="text-gray-600 mb-4">There was an error submitting your booking.</p>
+            <p class="text-sm text-gray-500">Please try again or contact us directly.</p>
+          `,
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#DCA47C'
+        });
+      }
+      // ========================================
     });
   }
 
@@ -662,3 +758,168 @@ ${bookingData.name}
   // Make it available globally for component reinitialization
   window.initBookingPage = initBookingPage;
 })();
+
+// ========================================
+// CAPPADOCIA TOURS SUPABASE INTEGRATION
+// ========================================
+
+/**
+ * Initialize Cappadocia Tours booking with Supabase
+ * This handles tours like Jeep Safari, Horse Riding, etc.
+ */
+function initCappadociaTourBooking() {
+  const tourForm = document.getElementById('tour-booking-form');
+  if (!tourForm) return; // Not a Cappadocia tour page
+  
+  console.log('🚗 Initializing Cappadocia Tour booking with Supabase');
+  
+  // Get the original submit handler
+  const originalSubmitHandler = tourForm.onsubmit;
+  
+  // Override with Supabase-enabled handler
+  tourForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    console.log('📝 Cappadocia Tour form submitted');
+    
+    // Get form data
+    const formData = new FormData(tourForm);
+    const name = formData.get('name')?.trim();
+    const email = formData.get('email')?.trim();
+    const phone = formData.get('phone')?.trim() || '';
+    const hotel = formData.get('hotel')?.trim() || '';
+    const tourType = document.getElementById('tour-type')?.value || 'Unknown Tour';
+    
+    // Get calendar date
+    const calendarInput = document.getElementById('calendar');
+    const selectedDateValue = calendarInput?.value;
+    
+    if (!selectedDateValue) {
+      await Swal.fire({
+        icon: 'warning',
+        title: 'Date Required',
+        text: 'Please select a date for your tour.',
+        confirmButtonColor: '#DCA47C'
+      });
+      return;
+    }
+    
+    // Get country code
+    const countryCodeSelect = $('#country-code');
+    const countryCode = countryCodeSelect.val() || '+90';
+    
+    // Get persons count
+    const personsInput = document.getElementById('persons');
+    const persons = personsInput ? parseInt(personsInput.value) : 1;
+    
+    // Prepare booking data
+    const bookingData = {
+      name: name,
+      email: email,
+      phone: phone,
+      countryCode: countryCode,
+      tourType: tourType,
+      date: selectedDateValue, // Already in YYYY-MM-DD format from calendar
+      persons: persons,
+      specialRequests: hotel ? `Hotel: ${hotel}` : null
+    };
+    
+    console.log('📦 Cappadocia Tour booking data:', bookingData);
+    
+    // Show confirmation
+    const result = await Swal.fire({
+      title: 'Confirm Booking Request',
+      html: `
+        <div class="text-left space-y-2">
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h4 class="font-semibold text-lg mb-3">Tour Details</h4>
+            <p><strong>Tour:</strong> ${tourType}</p>
+            <p><strong>Date:</strong> ${new Date(selectedDateValue).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <p><strong>Persons:</strong> ${persons}</p>
+            ${hotel ? `<p><strong>Hotel:</strong> ${hotel}</p>` : ''}
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg mt-3">
+            <h4 class="font-semibold text-lg mb-3">Contact Information</h4>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            ${phone ? `<p><strong>Phone:</strong> ${countryCode} ${phone}</p>` : ''}
+          </div>
+        </div>
+      `,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#DCA47C',
+      cancelButtonColor: '#6B7280',
+      confirmButtonText: 'Send Request',
+      cancelButtonText: 'Cancel'
+    });
+    
+    if (!result.isConfirmed) {
+      return;
+    }
+    
+    // ========================================
+    // SUPABASE: Save tour booking
+    // ========================================
+    console.log('💾 Saving Cappadocia Tour booking to Supabase...');
+    
+    const supabaseData = {
+      name: bookingData.name,
+      email: bookingData.email,
+      phone: bookingData.phone || 'Not provided',
+      countryCode: bookingData.countryCode,
+      tourType: bookingData.tourType,
+      date: bookingData.date,
+      persons: bookingData.persons,
+      specialRequests: bookingData.specialRequests,
+      hotelName: hotel || null
+    };
+    
+    console.log('📤 Sending to Supabase:', supabaseData);
+    
+    const saveResult = await saveBookingToSupabase(supabaseData);
+    
+    if (saveResult.success) {
+      console.log('✅ Cappadocia Tour booking saved successfully!');
+      console.log('📊 Booking ID:', saveResult.data?.id);
+      
+      // Show success message
+      await Swal.fire({
+        icon: 'success',
+        title: 'Booking Submitted!',
+        html: `
+          <p class="text-gray-600 mb-4">Your booking request has been received successfully.</p>
+          <p class="text-sm text-gray-500">We will contact you soon to confirm your reservation.</p>
+        `,
+        confirmButtonText: 'Great!',
+        confirmButtonColor: '#DCA47C'
+      });
+      
+      // Reset form
+      tourForm.reset();
+      if (calendarInput) calendarInput.value = '';
+      
+    } else {
+      console.error('❌ Failed to save booking:', saveResult.error);
+      
+      // Show error message
+      await Swal.fire({
+        icon: 'error',
+        title: 'Submission Error',
+        html: `
+          <p class="text-gray-600 mb-4">There was an error submitting your booking.</p>
+          <p class="text-sm text-gray-500">Please try again or contact us directly.</p>
+        `,
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#DCA47C'
+      });
+    }
+  });
+}
+
+// Initialize Cappadocia Tours booking if on tour page
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCappadociaTourBooking);
+} else {
+  initCappadociaTourBooking();
+}

@@ -132,6 +132,53 @@
     .float-animation {
       animation: float 3s ease-in-out infinite;
     }
+
+    /* Swiper Navigation Buttons - Show Arrows */
+    .museumGallerySwiper .swiper-button-next,
+    .museumGallerySwiper .swiper-button-prev {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    .museumGallerySwiper .swiper-button-next::after,
+    .museumGallerySwiper .swiper-button-prev::after {
+      content: '' !important;
+      display: block !important;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid white;
+      border-right: 2px solid white;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .museumGallerySwiper .swiper-button-next::after {
+      transform: rotate(45deg);
+      margin-left: -2px;
+    }
+
+    .museumGallerySwiper .swiper-button-prev::after {
+      transform: rotate(-135deg);
+      margin-right: -2px;
+    }
+
+    /* Prevent image selection */
+    .museumGallerySwiper img {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      pointer-events: none;
+    }
+
+    /* Enhanced hover effect for navigation */
+    .museumGallerySwiper .swiper-button-next:hover,
+    .museumGallerySwiper .swiper-button-prev:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(220, 164, 124, 0.4) !important;
+    }
   </style>
 
   <!-- Custom Styles -->
@@ -206,7 +253,7 @@
   <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">
     <!-- Background Image -->
     <div class="absolute inset-0">
-      <img src="../images/destinations/goreme-museum.jpg" 
+      <img src="../images/destinations/goreme-museum/goreme1.jpg" 
            alt="Göreme Open Air Museum" 
            class="w-full h-full object-cover">
       <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
@@ -234,23 +281,205 @@
   <!-- Main Content -->
   <main class="py-8 md:py-16 bg-gradient-to-b from-gray-50 to-white">
     <div class="mx-auto container-max">
-      <!-- Content will be added here -->
-      <div class="bg-white rounded-2xl shadow-cardLg overflow-hidden mb-8 border border-gray-100">
-        <div class="p-6 md:p-8">
-          <h2 class="text-2xl md:text-3xl font-playfair font-bold mb-4 text-gray-900">About Göreme Open Air Museum</h2>
-          <div class="prose prose-lg max-w-none text-justify">
-            <p class="text-gray-700 leading-relaxed mb-4">
-              The Göreme Open Air Museum is one of the most visited tourist attractions in Cappadocia and a UNESCO World Heritage Site. This remarkable complex of medieval painted cave churches and monasteries carved from the soft volcanic rock dates back to the 10th, 11th and 12th centuries.
-            </p>
-            <p class="text-gray-700 leading-relaxed mb-4">
-              The museum contains some of the finest examples of Byzantine art anywhere in the world. The frescoes inside the churches are incredibly well-preserved, depicting scenes from the Bible with vibrant colors that have lasted for over a thousand years.
-            </p>
-            <p class="text-gray-700 leading-relaxed">
-              Walking through the museum feels like stepping back in time. Each church has its own unique character and story, from the simple rock-cut chapels to the elaborate structures with multiple chambers and stunning artwork covering every surface.
-            </p>
+      
+      <!-- Two Column Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        
+        <!-- Left Column (3 parts) - Gallery + About -->
+        <div class="lg:col-span-3 space-y-8">
+          
+          <!-- Photo Gallery -->
+          <div class="bg-white rounded-2xl shadow-cardLg overflow-hidden border border-gray-100">
+            <div class="px-6 md:px-8 py-5 border-b border-gray-100 bg-gradient-to-r from-accent1/10 to-accent2/10">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center">
+                  <svg class="w-5 h-5 text-accent1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-xl md:text-2xl font-playfair font-bold text-gray-900 pt-2">Photo Gallery</h2>
+                  <p class="text-sm text-gray-600 pb-2">Ancient rock churches and Byzantine frescoes</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 md:p-8">
+              <!-- Swiper Carousel -->
+              <div class="swiper museumGallerySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <img src="../images/destinations/goreme-museum/goreme1.jpg" 
+                           alt="Göreme Open Air Museum" 
+                           class="w-full h-full object-cover">
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <img src="../images/destinations/goreme-museum/goreme2.jpg" 
+                           alt="Byzantine Frescoes" 
+                           class="w-full h-full object-cover">
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <img src="../images/destinations/goreme-museum/goreme3.jpg" 
+                           alt="Rock-cut Churches" 
+                           class="w-full h-full object-cover">
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <img src="../images/destinations/goreme-museum/goreme4.jpg" 
+                           alt="Ancient Cave Churches" 
+                           class="w-full h-full object-cover">
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+                      <img src="../images/destinations/goreme-museum/goreme5.jpg" 
+                           alt="Byzantine Art" 
+                           class="w-full h-full object-cover">
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Premium Navigation -->
+                <div class="swiper-button-next !text-white !w-12 !h-12 !bg-accent1 hover:!bg-accent2 !rounded-full !shadow-xl after:!text-lg after:!font-bold transition-colors duration-300"></div>
+                <div class="swiper-button-prev !text-white !w-12 !h-12 !bg-accent1 hover:!bg-accent2 !rounded-full !shadow-xl after:!text-lg after:!font-bold transition-colors duration-300"></div>
+                
+                <!-- Elegant Pagination -->
+                <div class="swiper-pagination !bottom-4"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- About Section -->
+          <div class="bg-white rounded-2xl shadow-cardLg overflow-hidden border border-gray-100">
+            <div class="px-6 md:px-8 py-5 border-b border-gray-100 bg-gradient-to-r from-accent1/10 to-accent2/10">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center">
+                  <svg class="w-5 h-5 text-accent1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-xl md:text-2xl font-playfair font-bold text-gray-900 pt-2">About the Museum</h2>
+                  <p class="text-sm text-gray-600 pb-2">History and significance</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 md:p-8">
+              <div class="prose prose-lg max-w-none">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  Nearby Mount Erciyes volcano erupted thousands of years ago. The landscape was covered in ash and lava that hardened into tufa rocks. Wind erosion gradually created the fairy chimneys we see today over many centuries. However, it didn't take long for locals to realize they could carve rocks into houses and churches.
+                </p>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  Cappadocia was a place of refuge for early Christians, who decorated it with symbols and art. The churches flourished also under the patronage of Saint Basil of Caesarea who was one of three Cappadocian Fathers that advanced early Christian theology.
+                </p>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  While the 4th-century sanctuaries contain many Byzantine art examples, later structures have richer frescoes. They decorate walls and ceilings with Biblical scenes. Their primary purpose was to assist those who couldn't read and write.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                  The caves were used as pigeon sheds by locals when Ottoman rule was established in Cappadocia. This was despite their historical significance. To restore the frescoes back to their original condition, it took many historians years. Most frescoes are part of the UNESCO World Heritage List since 1984. They date back to the 9th through the 12th centuries.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column (2 parts) - Famous Churches -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-cardLg overflow-hidden border border-gray-100 h-full flex flex-col">
+            <div class="px-6 md:px-8 py-5 border-b border-gray-100 bg-gradient-to-r from-accent1/10 to-accent2/10">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center">
+                  <svg class="w-5 h-5 text-accent1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-xl md:text-2xl font-playfair font-bold text-gray-900">Famous Churches</h2>
+                  <p class="text-sm text-gray-600">Well-known landmarks</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 md:p-8 flex-1">
+              <div class="space-y-6 h-full flex flex-col justify-between">
+                
+                <!-- Church Card 1 -->
+                <div class="group bg-gradient-to-br from-accent1/5 to-accent2/5 rounded-xl p-5 border border-accent1/10 hover:border-accent1/30 transition-all duration-300 hover:shadow-md">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-accent1 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span class="text-white font-bold text-sm">1</span>
+                    </div>
+                    <h3 class="text-lg font-playfair font-bold text-gray-900 leading-tight">Tokali Church of the Buckle</h3>
+                  </div>
+                  <p class="text-gray-700 leading-relaxed text-sm">
+                    This church contains 9th-century frescoes that depict the life of Jesus and the 12 apostles. It contains four chambers, one of which focuses on New Testament scenes and the life and times St Basil.
+                  </p>
+                </div>
+
+                <!-- Church Card 2 -->
+                <div class="group bg-gradient-to-br from-accent1/5 to-accent2/5 rounded-xl p-5 border border-accent1/10 hover:border-accent1/30 transition-all duration-300 hover:shadow-md">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-accent1 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span class="text-white font-bold text-sm">2</span>
+                    </div>
+                    <h3 class="text-lg font-playfair font-bold text-gray-900 leading-tight">Elmali - Apple Church</h3>
+                  </div>
+                  <p class="text-gray-700 leading-relaxed text-sm">
+                    This equally important structure was built in around 1050 and features a Greek cross that has been carved into the pillars supporting the central dome. It depicts, among other Biblical scenes, The Last Supper.
+                  </p>
+                </div>
+
+                <!-- Church Card 3 -->
+                <div class="group bg-gradient-to-br from-accent1/5 to-accent2/5 rounded-xl p-5 border border-accent1/10 hover:border-accent1/30 transition-all duration-300 hover:shadow-md">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-accent1 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span class="text-white font-bold text-sm">3</span>
+                    </div>
+                    <h3 class="text-lg font-playfair font-bold text-gray-900 leading-tight">Barbara Church</h3>
+                  </div>
+                  <p class="text-gray-700 leading-relaxed text-sm">
+                    The 11th century Barbara Church is in honour of a martyr called Barbara who was killed by her father for practising Christianity.
+                  </p>
+                </div>
+
+                <!-- Church Card 4 -->
+                <div class="group bg-gradient-to-br from-accent1/5 to-accent2/5 rounded-xl p-5 border border-accent1/10 hover:border-accent1/30 transition-all duration-300 hover:shadow-md">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-accent1 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span class="text-white font-bold text-sm">4</span>
+                    </div>
+                    <h3 class="text-lg font-playfair font-bold text-gray-900 leading-tight">Yilanli - Snake Church</h3>
+                  </div>
+                  <p class="text-gray-700 leading-relaxed text-sm">
+                    This church is named after a fresco depicting George killing the dragon. It has a low ceiling, and a long nave.
+                  </p>
+                </div>
+
+                <!-- Church Card 5 -->
+                <div class="group bg-gradient-to-br from-accent1/5 to-accent2/5 rounded-xl p-5 border border-accent1/10 hover:border-accent1/30 transition-all duration-300 hover:shadow-md">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-accent1 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span class="text-white font-bold text-sm">5</span>
+                    </div>
+                    <h3 class="text-lg font-playfair font-bold text-gray-900 leading-tight">Carikli: Sandals Church</h3>
+                  </div>
+                  <p class="text-gray-700 leading-relaxed text-sm">
+                    The name derives from the two footprints found at the bottom the Ascension fresco. The wall frescoes show a variety of themes including the Nativity, the Crucifixion and the Baptism as well as the Magi Adoration.
+                  </p>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
+
     </div>
   </main>
 
@@ -320,6 +549,48 @@
   <script>
     // Set current year in footer
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Initialize Museum Gallery Swiper (same as Cappadocia tours)
+    document.addEventListener('DOMContentLoaded', function() {
+      const museumGallerySwiper = new Swiper('.museumGallerySwiper', {
+        init: false,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: false,
+        centeredSlides: true,
+        watchOverflow: true,
+        observer: false,
+        observeParents: false,
+        resizeObserver: false,
+        updateOnWindowResize: false,
+        preventInteractionOnTransition: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        on: {
+          init: function () {
+            // Force correct width on init
+            this.$el[0].style.width = '100%';
+            this.$el[0].style.maxWidth = '100%';
+            
+            // Force slides to correct width
+            this.slides.forEach(slide => {
+              slide.style.width = '100%';
+            });
+          }
+        }
+      });
+
+      // Initialize after a brief delay to ensure proper sizing
+      setTimeout(() => {
+        museumGallerySwiper.init();
+      }, 100);
+    });
   </script>
 
   <!-- Premium Floating WhatsApp Button -->
@@ -327,7 +598,8 @@
     aria-label="WhatsApp"
     class="group fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50 w-16 h-16 rounded-2xl shadow-2xl bg-gradient-to-br from-accent1 via-accent2 to-accent1 hover:shadow-[0_25px_60px_-5px_rgba(220,164,124,0.4)] flex items-center justify-center transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 border border-white/20 backdrop-blur-sm">
     <!-- Premium Glow Effect -->
-    <div class="absolute inset-0 bg-gradient-to-br from-accent1/20 to-accent2/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-accent1/20 to-accent2/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110">
     </div>
 
     <!-- Enhanced WhatsApp Icon -->
@@ -339,12 +611,12 @@
 
         <!-- WhatsApp Logo -->
         <path
-          d="M16 6C10.477 6 6 10.477 6 16c0 1.89.525 3.66 1.438 5.168L6.546 25.2l4.18-.867A9.956 9.956 0 0016 26c5.523 0 10-4.477 10-10S21.523 6 16 6z"
+          d="M16 4C9.4 4 4 9.4 4 16c0 2.1.5 4.1 1.5 5.9L4 28l6.2-1.5c1.8.9 3.8 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 4 16 4z"
           fill="#25D366" />
 
         <!-- Phone Shape -->
         <path
-          d="M12.5 10.5c.15-.45.674-.636 1.136-.418l1.728.818c.364.172.546.576.43.954l-.43 1.392c-.086.28.014.588.254.78 1.155.925 2.285 2.055 3.21 3.21.192.24.5.34.78.254l1.392-.43c.378-.116.782.066.954.43l.818 1.728c.218.462.032.986-.418 1.136l-1.274.424c-.532.177-1.13.06-1.545-.354-1.44-1.44-3.39-3.39-4.83-4.83-.414-.415-.531-1.013-.354-1.545l.424-1.274z"
+          d="M22.5 18.7c-.3-.2-2-.9-2.3-1.1-.3-.2-.5-.3-.7.3-.2.5-.9 1.1-1.1 1.3-.2.2-.4.3-.7.1-.3-.2-1.4-.5-2.6-1.6-.9-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.2-.6.2-.2.4-.4.5-.6.2-.2.2-.4.4-.6.1-.2.1-.5 0-.7-.1-.2-.7-1.8-1-2.4-.3-.6-.6-.5-.8-.5h-.6c-.2 0-.6.1-.9.5-.3.4-1.1 1.1-1.1 2.6s1.1 3 1.3 3.3c.2.2 2.4 3.7 5.8 5.2.8.3 1.4.5 1.9.7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.3z"
           fill="white" />
       </svg>
     </div>

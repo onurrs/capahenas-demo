@@ -279,8 +279,31 @@
   document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
     initReviewsSwiper();
+    initBalloonToursSwiper();
   });
   window.initializeApp = initializeApp;
+
+  // Balloon Tours Swiper for Mobile
+  function initBalloonToursSwiper() {
+    if (window.Swiper && document.querySelector('.balloonToursSwiper')) {
+      new Swiper('.balloonToursSwiper', {
+        slidesPerView: 1.15,
+        spaceBetween: 16,
+        centeredSlides: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          768: {
+            enabled: false
+          }
+        }
+      });
+    }
+  }
 })()
+
+
 
 
