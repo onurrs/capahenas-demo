@@ -709,14 +709,20 @@ async function saveBookingToSupabase(bookingData) {
       if (saveResult.success) {
         console.log('✅ Booking saved to database successfully!');
         console.log('📊 Booking ID:', saveResult.data?.id);
+        console.log('🎫 PNR Number:', saveResult.data?.pnr_number);
         
-        // Show success message
+        // Show success message with PNR
         await Swal.fire({
           icon: 'success',
           title: 'Booking Submitted!',
           html: `
             <p class="text-gray-600 mb-4">Your booking request has been received successfully.</p>
-            <p class="text-sm text-gray-500">We will contact you soon to confirm your reservation.</p>
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
+              <p class="text-sm font-semibold text-blue-900 mb-1">Your PNR Number:</p>
+              <p class="text-2xl font-bold text-blue-600 tracking-wider">${saveResult.data?.pnr_number || 'N/A'}</p>
+            </div>
+            <p class="text-sm text-gray-500 mb-2">We will contact you soon to confirm your reservation.</p>
+            <p class="text-xs text-gray-400 italic">Please use this PNR number when contacting us via email regarding your ticket.</p>
           `,
           confirmButtonText: 'Great!',
           confirmButtonColor: '#DCA47C'
@@ -882,14 +888,20 @@ function initCappadociaTourBooking() {
     if (saveResult.success) {
       console.log('✅ Cappadocia Tour booking saved successfully!');
       console.log('📊 Booking ID:', saveResult.data?.id);
+      console.log('🎫 PNR Number:', saveResult.data?.pnr_number);
       
-      // Show success message
+      // Show success message with PNR
       await Swal.fire({
         icon: 'success',
         title: 'Booking Submitted!',
         html: `
           <p class="text-gray-600 mb-4">Your booking request has been received successfully.</p>
-          <p class="text-sm text-gray-500">We will contact you soon to confirm your reservation.</p>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
+            <p class="text-sm font-semibold text-blue-900 mb-1">Your PNR Number:</p>
+            <p class="text-2xl font-bold text-blue-600 tracking-wider">${saveResult.data?.pnr_number || 'N/A'}</p>
+          </div>
+          <p class="text-sm text-gray-500 mb-2">We will contact you soon to confirm your reservation.</p>
+          <p class="text-xs text-gray-400 italic">Please use this PNR number when contacting us via email regarding your ticket.</p>
         `,
         confirmButtonText: 'Great!',
         confirmButtonColor: '#DCA47C'
