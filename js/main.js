@@ -198,7 +198,13 @@
           <!-- Footer -->
           <div class="mt-4 pt-4 border-t border-gray-100">
             <div class="flex items-center justify-between text-xs text-gray-500">
-              <span>Google Reviews</span>
+              <a href="https://www.google.com/maps/place/?q=place_id:ChIJow0JH_1nKhURtw1i-Y_6eik&lrd=ChIJow0JH_1nKhURtw1i-Y_6eik,1" target="_blank" rel="noopener noreferrer" 
+                class="hover:text-accent1 transition-colors duration-300 relative group">
+                <span class="relative">
+                  Google Reviews
+                  <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent1 transition-all duration-300 group-hover:w-full"></span>
+                </span>
+              </a>
               <span class="flex items-center gap-1">
                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -280,8 +286,151 @@
     initializeApp();
     initReviewsSwiper();
     initBalloonToursSwiper();
+    initShowMoreButtons();
   });
   window.initializeApp = initializeApp;
+
+  // Show More/Less functionality for mobile
+  function initShowMoreButtons() {
+    // Check if mobile
+    const isMobile = () => window.innerWidth < 768;
+    
+    // Cappadocia Tours Show More/Less
+    const cappadociaGrid = document.getElementById('cappadocia-tours-grid');
+    const cappadociaBtn = document.getElementById('cappadocia-show-more');
+    const cappadociaBtnText = document.getElementById('cappadocia-btn-text');
+    const cappadociaChevron = document.getElementById('cappadocia-chevron');
+    
+    if (cappadociaGrid && cappadociaBtn) {
+      let cappadociaExpanded = false;
+      const cappadociaCards = Array.from(cappadociaGrid.children);
+      
+      const updateCappadociaVisibility = () => {
+        if (isMobile()) {
+          // Hide cards after 4th on mobile
+          cappadociaCards.forEach((card, index) => {
+            if (index >= 4) {
+              card.style.display = cappadociaExpanded ? 'flex' : 'none';
+            }
+          });
+        } else {
+          // Show all cards on desktop
+          cappadociaCards.forEach((card) => {
+            card.style.display = 'flex';
+          });
+        }
+      };
+      
+      // Initialize
+      updateCappadociaVisibility();
+      
+      cappadociaBtn.addEventListener('click', () => {
+        cappadociaExpanded = !cappadociaExpanded;
+        updateCappadociaVisibility();
+        
+        cappadociaBtnText.textContent = cappadociaExpanded ? 'Show Less' : 'Show More';
+        cappadociaChevron.style.transform = cappadociaExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+        
+        // Smooth scroll to button if collapsing
+        if (!cappadociaExpanded) {
+          cappadociaBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+      
+      // Update on resize
+      window.addEventListener('resize', updateCappadociaVisibility);
+    }
+    
+    // Turkey Tours Show More/Less
+    const turkeyGrid = document.getElementById('turkey-tours-grid');
+    const turkeyBtn = document.getElementById('turkey-show-more');
+    const turkeyBtnText = document.getElementById('turkey-btn-text');
+    const turkeyChevron = document.getElementById('turkey-chevron');
+    
+    if (turkeyGrid && turkeyBtn) {
+      let turkeyExpanded = false;
+      const turkeyCards = Array.from(turkeyGrid.children);
+      
+      const updateTurkeyVisibility = () => {
+        if (isMobile()) {
+          // Hide cards after 2nd on mobile
+          turkeyCards.forEach((card, index) => {
+            if (index >= 2) {
+              card.style.display = turkeyExpanded ? 'block' : 'none';
+            }
+          });
+        } else {
+          // Show all cards on desktop
+          turkeyCards.forEach((card) => {
+            card.style.display = 'block';
+          });
+        }
+      };
+      
+      // Initialize
+      updateTurkeyVisibility();
+      
+      turkeyBtn.addEventListener('click', () => {
+        turkeyExpanded = !turkeyExpanded;
+        updateTurkeyVisibility();
+        
+        turkeyBtnText.textContent = turkeyExpanded ? 'Show Less' : 'Show More';
+        turkeyChevron.style.transform = turkeyExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+        
+        if (!turkeyExpanded) {
+          turkeyBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+      
+      // Update on resize
+      window.addEventListener('resize', updateTurkeyVisibility);
+    }
+    
+    // Destinations Show More/Less
+    const destinationsGrid = document.getElementById('destinations-grid');
+    const destinationsBtn = document.getElementById('destinations-show-more');
+    const destinationsBtnText = document.getElementById('destinations-btn-text');
+    const destinationsChevron = document.getElementById('destinations-chevron');
+    
+    if (destinationsGrid && destinationsBtn) {
+      let destinationsExpanded = false;
+      const destinationsCards = Array.from(destinationsGrid.children);
+      
+      const updateDestinationsVisibility = () => {
+        if (isMobile()) {
+          // Hide cards after 4th on mobile
+          destinationsCards.forEach((card, index) => {
+            if (index >= 4) {
+              card.style.display = destinationsExpanded ? 'block' : 'none';
+            }
+          });
+        } else {
+          // Show all cards on desktop
+          destinationsCards.forEach((card) => {
+            card.style.display = 'block';
+          });
+        }
+      };
+      
+      // Initialize
+      updateDestinationsVisibility();
+      
+      destinationsBtn.addEventListener('click', () => {
+        destinationsExpanded = !destinationsExpanded;
+        updateDestinationsVisibility();
+        
+        destinationsBtnText.textContent = destinationsExpanded ? 'Show Less' : 'Show More';
+        destinationsChevron.style.transform = destinationsExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+        
+        if (!destinationsExpanded) {
+          destinationsBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+      
+      // Update on resize
+      window.addEventListener('resize', updateDestinationsVisibility);
+    }
+  }
 
   // Balloon Tours Swiper for Mobile
   function initBalloonToursSwiper() {

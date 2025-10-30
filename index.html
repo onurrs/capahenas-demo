@@ -32,6 +32,10 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -73,6 +77,22 @@
 
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/balloon-cards.css" />
+  
+  <!-- Mobile Overflow Fix -->
+  <style>
+    html, body {
+      overflow-x: hidden;
+    }
+    body {
+      position: relative;
+    }
+    /* Prevent horizontal scroll on mobile only */
+    @media (max-width: 767px) {
+      * {
+        max-width: 100vw;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-bg text-text font-inter antialiased overflow-x-hidden">
@@ -793,7 +813,7 @@
     <div class="mx-auto container-max px-4 md:px-6 mt-4">
       <h2 id="popular-tours" class="text-2xl md:text-3xl font-playfair">Popular Tours in
         Cappadocia</h2>
-      <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div id="cappadocia-tours-grid" class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         <!-- Red Tour -->
         <a href="cappadocia-tours/red-tour.html"
           class="group rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl border border-gray-100 hover:border-accent1/20 transform hover:-translate-y-1 transition-all duration-300 flex flex-col">
@@ -1009,6 +1029,19 @@
           </div>
         </a>
       </div>
+      <!-- Close cappadocia-tours-grid -->
+      </div>
+      
+      <!-- Show More/Less Button for Mobile -->
+      <div class="mt-6 flex justify-center md:hidden">
+        <button id="cappadocia-show-more" 
+          class="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent1 to-accent2 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <span id="cappadocia-btn-text">Show More</span>
+          <svg id="cappadocia-chevron" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -1016,23 +1049,7 @@
   <section id="turkey-tours" aria-labelledby="tr-tours" class="py-14 md:py-16 bg-[#FAF7F0] animate-init" data-anim>
     <div class="mx-auto container-max px-4 md:px-6">
       <h2 id="tr-tours" class="text-2xl md:text-3xl font-playfair">Türkiye Tours</h2>
-      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Generate 10 cards -->
-        <!-- Card template repeated -->
-        <template id="tour-card-template">
-          <article class="rounded-soft overflow-hidden bg-white shadow-card" aria-labelledby="tour-title">
-            <img src="" alt="Tur görseli" class="w-full h-36 object-cover" loading="lazy" />
-            <div class="p-3">
-              <h3 id="tour-title" class="font-semibold text-base">Tour Title</h3>
-              <p class="text-muted text-sm">Short description</p>
-              <div class="mt-3 flex items-center justify-between">
-                <span class="font-bold text-sm"></span>
-                <a href="coming-soon.html"
-                  class="inline-block rounded-soft px-3 py-1.5 text-sm font-semibold text-[#081025] bg-gradient-to-r from-accent1 to-accent2">View</a>
-              </div>
-            </div>
-          </article>
-        </template>
+      <div id="turkey-tours-grid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         <!-- Static fallback (6 items) -->
         <article class="rounded-soft overflow-hidden bg-white shadow-card"><img class="w-full h-36 object-cover"
             loading="lazy" alt="Daily Pamukkale Tour"
@@ -1107,6 +1124,19 @@
           </div>
         </article>
       </div>
+      <!-- Close turkey-tours-grid -->
+      </div>
+      
+      <!-- Show More/Less Button for Mobile -->
+      <div class="mt-6 flex justify-center md:hidden">
+        <button id="turkey-show-more" 
+          class="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent1 to-accent2 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <span id="turkey-btn-text">Show More</span>
+          <svg id="turkey-chevron" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -1119,7 +1149,7 @@
           Destinations</h2>
       </div>
       <!-- Horizontal scroll on mobile, grid on desktop -->
-      <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+      <div id="destinations-grid" class="mt-6 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-5">
         <!-- 10 destination chips/cards -->
         <a href="destinations/goreme-museum.html"
           class="group rounded-soft bg-white shadow-card overflow-hidden transition-transform duration-300 hover:scale-105">
@@ -1181,6 +1211,19 @@
             alt="Zelve Open Air Museum" class="h-32 w-full object-cover" loading="lazy" />
           <div class="p-3 font-medium">Zelve Open Air Museum</div>
         </a>
+      </div>
+      <!-- Close destinations-grid -->
+      </div>
+      
+      <!-- Show More/Less Button for Mobile -->
+      <div class="mt-6 flex justify-center md:hidden">
+        <button id="destinations-show-more" 
+          class="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent1 to-accent2 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <span id="destinations-btn-text">Show More</span>
+          <svg id="destinations-chevron" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
       </div>
     </div>
   </section>
@@ -1254,26 +1297,26 @@
           <div class="px-2 sm:px-3 pb-3">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 select-none">
               <a class="glightbox" data-gallery="capahenas" href="images/instagram/519633653_18015299768767194_6333802531384920511_n.webp"><img
-                  alt="Cappadocia" loading="lazy" class="w-full h-64 md:h-80 object-cover rounded-[18px]"
+                  alt="Cappadocia" loading="lazy" class="w-full h-full md:h-64 lg:h-80 object-cover rounded-[18px]"
                   src="images/instagram/519633653_18015299768767194_6333802531384920511_n.webp" /></a>
               <div class="grid gap-2 sm:gap-3">
                 <a class="glightbox" data-gallery="capahenas" href="images/instagram/525211147_18017539088767194_5292481499719324518_n.jpeg"><img
-                    alt="Balloons" loading="lazy" class="w-full h-40 object-cover rounded-[18px]"
+                    alt="Balloons" loading="lazy" class="w-full h-full md:h-32 lg:h-40 object-cover rounded-[18px]"
                     src="images/instagram/525211147_18017539088767194_5292481499719324518_n.jpeg" /></a>
                 <a class="glightbox" data-gallery="capahenas" href="images/instagram/535265830_18020421827767194_5616037982479341773_n.jpeg"><img
-                    alt="Night Balloon" loading="lazy" class="w-full h-40 object-cover rounded-[18px]"
+                    alt="Night Balloon" loading="lazy" class="w-full h-full md:h-32 lg:h-40 object-cover rounded-[18px]"
                     src="images/instagram/535265830_18020421827767194_5616037982479341773_n.jpeg" /></a>
               </div>
-              <a class="glightbox" data-gallery="capahenas" href="images/instagram/544149859_18022954409767194_6807826506022568949_n.jpeg"><img
-                  alt="Valley" loading="lazy" class="w-full h-64 md:h-80 object-cover rounded-[18px]"
-                  src="images/instagram/544149859_18022954409767194_6807826506022568949_n.jpeg" /></a>
+              <a class="glightbox" data-gallery="capahenas" href="images/instagram/i.jpg"><img
+                  alt="Valley" loading="lazy" class="w-full h-full md:h-64 lg:h-80 object-cover rounded-[18px]"
+                  src="images/instagram/i.jpg" /></a>
               <div class="grid gap-2 sm:gap-3">
                 <a class="glightbox" data-gallery="capahenas" href="images/instagram/557415133_18025462010767194_1404863850939385145_n.jpeg"><img
-                    alt="Sunrise" loading="lazy" class="w-full h-40 object-cover rounded-[18px]"
+                    alt="Sunrise" loading="lazy" class="w-full h-full md:h-32 lg:h-40 object-cover rounded-[18px]"
                     src="images/instagram/557415133_18025462010767194_1404863850939385145_n.jpeg" /></a>
-                <a class="glightbox" data-gallery="capahenas" href="images/instagram/557415133_18025462010767194_1404863850939385145_n.jpeg"><img
-                    alt="Pamukkale" loading="lazy" class="w-full h-40 object-cover rounded-[18px]"
-                    src="images/instagram/557415133_18025462010767194_1404863850939385145_n.jpeg" /></a>
+                <a class="glightbox" data-gallery="capahenas" href="images/instagram/544149859_18022954409767194_6807826506022568949_n.jpeg"><img
+                    alt="Pamukkale" loading="lazy" class="w-full h-full md:h-32 lg:h-40 object-cover rounded-[18px]"
+                    src="images/instagram/544149859_18022954409767194_6807826506022568949_n.jpeg" /></a>
               </div>
             </div>
           </div>
@@ -1591,6 +1634,98 @@
       </svg>
     </div>
   </a>
+
+  <!-- Mobile Screen Alert Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if device is mobile (screen width < 768px)
+      if (window.innerWidth < 768) {
+        // Check if user has already seen the popup in this session
+        const hasSeenPopup = sessionStorage.getItem('mobilePopupSeen');
+        
+        if (!hasSeenPopup) {
+          Swal.fire({
+            icon: 'info',
+            title: '<span style="color: #1a1a2e; font-family: \'Playfair Display\', serif;">Better Experience</span>',
+            html: `
+              <div style="font-family: 'Poppins', sans-serif; color: #6B7280; line-height: 1.6;">
+                <p style="margin-bottom: 12px; font-size: 15px;">
+                  Our website looks <strong style="color: #DCA47C;">better on larger screens</strong>.
+                </p>
+                <p style="font-size: 14px;">
+                  💻 We recommend using a laptop or desktop for the best experience.
+                </p>
+              </div>
+            `,
+            confirmButtonText: '<i class="fas fa-check" style="margin-right: 8px;"></i>Got it',
+            confirmButtonColor: '#DCA47C',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            backdrop: `
+              rgba(26, 26, 46, 0.85)
+              left top
+              no-repeat
+            `,
+            customClass: {
+              popup: 'premium-popup',
+              title: 'premium-popup-title',
+              htmlContainer: 'premium-popup-content',
+              confirmButton: 'premium-popup-button'
+            },
+            didOpen: () => {
+              // Add custom styles
+              const style = document.createElement('style');
+              style.textContent = `
+                .premium-popup {
+                  border-radius: 24px !important;
+                  padding: 32px !important;
+                  box-shadow: 0 25px 60px -5px rgba(220, 164, 124, 0.3) !important;
+                  border: 1px solid rgba(220, 164, 124, 0.2) !important;
+                  background: linear-gradient(135deg, #ffffff 0%, #FBFBFB 100%) !important;
+                }
+                .premium-popup-title {
+                  font-size: 28px !important;
+                  font-weight: 700 !important;
+                  margin-bottom: 20px !important;
+                  padding-bottom: 16px !important;
+                  border-bottom: 2px solid rgba(220, 164, 124, 0.2) !important;
+                }
+                .premium-popup-content {
+                  padding: 8px 0 !important;
+                }
+                .premium-popup-button {
+                  border-radius: 16px !important;
+                  padding: 14px 32px !important;
+                  font-weight: 600 !important;
+                  font-size: 16px !important;
+                  box-shadow: 0 10px 25px -5px rgba(220, 164, 124, 0.4) !important;
+                  transition: all 0.3s ease !important;
+                  font-family: 'Poppins', sans-serif !important;
+                  border: none !important;
+                  background: linear-gradient(135deg, #DCA47C 0%, #FFD3B6 100%) !important;
+                }
+                .premium-popup-button:hover {
+                  transform: translateY(-2px) !important;
+                  box-shadow: 0 15px 35px -5px rgba(220, 164, 124, 0.5) !important;
+                }
+                .swal2-icon.swal2-info {
+                  border-color: #DCA47C !important;
+                  color: #DCA47C !important;
+                }
+                .swal2-icon.swal2-info [class^='swal2-icon-content'] {
+                  color: #DCA47C !important;
+                }
+              `;
+              document.head.appendChild(style);
+            }
+          }).then(() => {
+            // Mark popup as seen in this session
+            sessionStorage.setItem('mobilePopupSeen', 'true');
+          });
+        }
+      }
+    });
+  </script>
 </body>
 
 </html>
