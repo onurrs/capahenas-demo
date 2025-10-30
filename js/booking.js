@@ -7,6 +7,8 @@
 const SUPABASE_URL = 'https://efvxjsdprydyvmotmtem.supabase.co'; // https://xxxxx.supabase.co
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmdnhqc2RwcnlkeXZtb3RtdGVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjQ2NzksImV4cCI6MjA3NzE0MDY3OX0.ZhBFbBZLXhAfFAsteVtULqoV9VB2b4Q1tMW8tRv6Fug'; // eyJhbGci...
 
+emailjs.init("PEClTotPoJ13EalFm"); // Public key buraya
+
 // Initialize Supabase Client (check if supabase is loaded)
 let supabaseClient = null;
 if (typeof supabase !== 'undefined') {
@@ -23,7 +25,7 @@ if (typeof supabase !== 'undefined') {
 async function saveBookingToSupabase(bookingData) {
   console.log('🔍 saveBookingToSupabase called');
   console.log('🔍 supabaseClient exists:', !!supabaseClient);
-  
+
   if (!supabaseClient) {
     console.warn('⚠️ Supabase client not available, skipping database save');
     return { success: false, error: 'Supabase not initialized' };
@@ -31,7 +33,7 @@ async function saveBookingToSupabase(bookingData) {
 
   try {
     console.log('📤 Inserting data into Supabase...');
-    
+
     const insertData = {
       customer_name: bookingData.name,
       customer_email: bookingData.email,
@@ -43,9 +45,9 @@ async function saveBookingToSupabase(bookingData) {
       special_requests: bookingData.specialRequests || null,
       status: 'pending'
     };
-    
+
     console.log('📋 Insert data:', insertData);
-    
+
     const { data, error } = await supabaseClient
       .from('bookings')
       .insert([insertData])
@@ -72,7 +74,7 @@ async function saveBookingToSupabase(bookingData) {
 // ========================================
 
 // Balloon booking functionality
-(function() {
+(function () {
   let selectedDate = null;
   let adultsCount = 1;
   let childrenCount = 0;
@@ -87,7 +89,7 @@ async function saveBookingToSupabase(bookingData) {
   function initPhoneNumberHandler() {
     const countrySelect = $('#country-code');
     const phoneInput = document.getElementById('phone');
-    
+
     // Country code mapping for options without data-country attribute
     const countryMapping = {
       '+1': 'us', // Default to US for +1
@@ -219,9 +221,9 @@ async function saveBookingToSupabase(bookingData) {
       // Default fallback for unsupported countries
       'default': { pattern: '################', blocks: [16] }
     };
-    
+
     let cleaveInstance = null;
-    
+
     if (countrySelect.length && phoneInput) {
       // Initialize Select2 with enhanced options
       countrySelect.select2({
@@ -229,19 +231,19 @@ async function saveBookingToSupabase(bookingData) {
         allowClear: false,
         width: 'resolve',
         dropdownAutoWidth: true,
-        templateResult: function(option) {
+        templateResult: function (option) {
           // For dropdown menu - show CDN flag + country name + code
           if (!option.id) return option.text;
-          
+
           let countryCode = $(option.element).data('country');
           const text = option.text;
           const phoneCode = option.id;
-          
+
           // If no data-country attribute, try to get from mapping
           if (!countryCode) {
             countryCode = countryMapping[phoneCode];
           }
-          
+
           if (countryCode) {
             // Use Flagpedia CDN for high-quality flags
             const flagUrl = `https://flagcdn.com/24x18/${countryCode}.png`;
@@ -250,21 +252,21 @@ async function saveBookingToSupabase(bookingData) {
               <span>${text}</span>
             </span>`);
           }
-          
+
           return $('<span>' + option.text + '</span>');
         },
-        templateSelection: function(option) {
+        templateSelection: function (option) {
           // For selected display - show only CDN flag and code
           if (!option.id) return option.text;
-          
+
           let countryCode = $(option.element).data('country');
           const phoneCode = option.id;
-          
+
           // If no data-country attribute, try to get from mapping
           if (!countryCode) {
             countryCode = countryMapping[phoneCode];
           }
-          
+
           if (countryCode) {
             // Use Flagpedia CDN for selected display too
             const flagUrl = `https://flagcdn.com/20x15/${countryCode}.png`;
@@ -273,20 +275,20 @@ async function saveBookingToSupabase(bookingData) {
               <span>${phoneCode}</span>
             </span>`);
           }
-          
+
           return $('<span>' + option.text + '</span>');
         }
       });
-      
+
       // Initialize Cleave.js for phone formatting
       function initPhoneFormatter(countryCode) {
         // Destroy existing instance
         if (cleaveInstance) {
           cleaveInstance.destroy();
         }
-        
+
         const pattern = phonePatterns[countryCode] || phonePatterns['default'];
-        
+
         cleaveInstance = new Cleave('#phone', {
           phone: true,
           phoneRegionCode: countryCode.toUpperCase(),
@@ -297,27 +299,27 @@ async function saveBookingToSupabase(bookingData) {
       }
 
       // Update placeholder and format when country changes
-      countrySelect.on('select2:select', function(e) {
+      countrySelect.on('select2:select', function (e) {
         const selectedData = e.params.data;
         const selectedElement = $(selectedData.element);
         const placeholder = selectedData.element.getAttribute('data-placeholder');
         const phoneCode = selectedData.id;
-        
+
         if (placeholder && phoneInput) {
           phoneInput.placeholder = placeholder;
         }
-        
+
         // Get country code for formatting
         let countryCode = $(selectedData.element).data('country');
         if (!countryCode) {
           countryCode = countryMapping[phoneCode];
         }
-        
+
         if (countryCode) {
           initPhoneFormatter(countryCode);
         }
       });
-      
+
       // Set initial placeholder and formatter (Turkey as default)
       const initialOption = countrySelect.find('option:first');
       if (initialOption.length) {
@@ -325,7 +327,7 @@ async function saveBookingToSupabase(bookingData) {
         if (initialPlaceholder && phoneInput) {
           phoneInput.placeholder = initialPlaceholder;
         }
-        
+
         // Initialize with Turkey format
         const initialCountryCode = initialOption.data('country') || 'tr';
         initPhoneFormatter(initialCountryCode);
@@ -344,7 +346,7 @@ async function saveBookingToSupabase(bookingData) {
     // Create calendar HTML
     const calendar = document.createElement('div');
     calendar.className = 'calendar';
-    
+
     // Calendar header
     const header = document.createElement('div');
     header.className = 'flex items-center justify-between mb-4';
@@ -390,11 +392,11 @@ async function saveBookingToSupabase(bookingData) {
 
   function renderCalendar(year, month) {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-                       'July', 'August', 'September', 'October', 'November', 'December'];
+      'July', 'August', 'September', 'October', 'November', 'December'];
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     document.getElementById('calendar-month').textContent = `${monthNames[month]} ${year}`;
-    
+
     const daysGrid = document.getElementById('calendar-days');
     daysGrid.innerHTML = '';
 
@@ -422,14 +424,13 @@ async function saveBookingToSupabase(bookingData) {
       const dayElement = document.createElement('button');
       const currentDate = new Date(year, month, day);
       const isPast = currentDate < today.setHours(0, 0, 0, 0);
-      
-      dayElement.className = `p-2 text-center rounded ${
-        isPast 
-          ? 'text-gray-300 cursor-not-allowed' 
+
+      dayElement.className = `p-2 text-center rounded ${isPast
+          ? 'text-gray-300 cursor-not-allowed'
           : 'hover:bg-accent1 hover:text-white cursor-pointer'
-      }`;
+        }`;
       dayElement.textContent = day;
-      
+
       if (!isPast) {
         dayElement.addEventListener('click', () => selectDate(year, month, day));
       }
@@ -446,7 +447,7 @@ async function saveBookingToSupabase(bookingData) {
 
     // Add selection to clicked date
     event.target.classList.add('bg-accent1', 'text-white');
-    
+
     selectedDate = new Date(year, month, day);
     updateSelectedDate();
   }
@@ -467,7 +468,7 @@ async function saveBookingToSupabase(bookingData) {
   function getMaxPassengers() {
     const flightTypeInput = document.getElementById('flight-type');
     const flightType = flightTypeInput ? flightTypeInput.value : 'Standard Flight';
-    
+
     if (flightType === 'Comfort Flight') {
       return 28;
     } else if (flightType === 'Private Flight') {
@@ -511,7 +512,7 @@ async function saveBookingToSupabase(bookingData) {
   function updatePassengerCount() {
     document.getElementById('adults-count').textContent = adultsCount;
     document.getElementById('children-count').textContent = childrenCount;
-    
+
     // Enhanced passenger display
     const totalPassengersEl = document.getElementById('total-passengers');
     if (totalPassengersEl) {
@@ -525,7 +526,7 @@ async function saveBookingToSupabase(bookingData) {
       }
       totalPassengersEl.textContent = displayText;
     }
-    
+
   }
 
   function initBookingForm() {
@@ -539,7 +540,7 @@ async function saveBookingToSupabase(bookingData) {
     // Add single event listener
     newForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       // Validate date selection
       if (!selectedDate) {
         Swal.fire({
@@ -573,7 +574,7 @@ async function saveBookingToSupabase(bookingData) {
       if (!email) {
         Swal.fire({
           icon: 'warning',
-          title: 'Email Required', 
+          title: 'Email Required',
           text: 'Please enter your email address.',
           confirmButtonColor: '#DCA47C'
         }).then(() => {
@@ -622,11 +623,11 @@ async function saveBookingToSupabase(bookingData) {
 
       const bookingData = {
         flightType: flightType,
-        date: selectedDate.toLocaleDateString('en-US', { 
-          weekday: 'long', 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
+        date: selectedDate.toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
         }),
         adults: adultsCount,
         children: childrenCount,
@@ -646,7 +647,7 @@ async function saveBookingToSupabase(bookingData) {
       console.log('Customer Phone:', bookingData.phone);
       console.log('Total Passengers:', bookingData.adults + bookingData.children);
       console.log('==============================');
-      
+
       // Show confirmation dialog with booking details
       const result = await Swal.fire({
         title: 'Confirm Booking Request',
@@ -680,17 +681,17 @@ async function saveBookingToSupabase(bookingData) {
       if (!result.isConfirmed) {
         return;
       }
-      
+
       // ========================================
       // SUPABASE: Save booking to database
       // ========================================
       console.log('💾 Attempting to save booking to Supabase...');
       console.log('Supabase Client Status:', supabaseClient ? '✅ Ready' : '❌ Not initialized');
-      
+
       // Get country code from select2
       const countryCodeSelect = $('#country-code');
       const countryCode = countryCodeSelect.val() || '+90';
-      
+
       const supabaseData = {
         name: bookingData.name,
         email: bookingData.email,
@@ -701,16 +702,16 @@ async function saveBookingToSupabase(bookingData) {
         persons: bookingData.adults + bookingData.children,
         specialRequests: `Adults: ${bookingData.adults}, Children: ${bookingData.children}`
       };
-      
+
       console.log('📦 Data to save:', supabaseData);
-      
+
       const saveResult = await saveBookingToSupabase(supabaseData);
-      
+
       if (saveResult.success) {
         console.log('✅ Booking saved to database successfully!');
         console.log('📊 Booking ID:', saveResult.data?.id);
         console.log('🎫 PNR Number:', saveResult.data?.pnr_number);
-        
+
         // Show success message with PNR
         await Swal.fire({
           icon: 'success',
@@ -727,17 +728,37 @@ async function saveBookingToSupabase(bookingData) {
           confirmButtonText: 'Great!',
           confirmButtonColor: '#DCA47C'
         });
-        
+
+        emailjs
+          .send("service_pnm4t6u", "template_fyo9dtq", {
+            name: supabaseData.name,
+            email: supabaseData.email,
+            phone: supabaseData.phone || 'Not provided',
+            country_code: supabaseData.countryCode,
+            tour_type: supabaseData.tourType,
+            tour_date: supabaseData.date,
+            persons: supabaseData.persons,
+            special_requests: supabaseData.specialRequests || 'Not provided',
+            pnr_number: saveResult.data?.pnr_number || ''
+          })
+          .then(() => {
+            status.textContent = "✅ Rezervasyon alındı, e-posta gönderildi!";
+          })
+          .catch((err) => {
+            console.error(err);
+            status.textContent = "⚠️ E-posta gönderilemedi!";
+          });
+
         // Reset form
         form.reset();
         selectedDate = null;
         document.getElementById('selected-date').textContent = 'Please select a date';
         document.getElementById('adults-count').textContent = '2';
         document.getElementById('children-count').textContent = '0';
-        
+
       } else {
         console.error('❌ Failed to save to database:', saveResult.error);
-        
+
         // Show error message
         await Swal.fire({
           icon: 'error',
@@ -776,18 +797,18 @@ async function saveBookingToSupabase(bookingData) {
 function initCappadociaTourBooking() {
   const tourForm = document.getElementById('tour-booking-form');
   if (!tourForm) return; // Not a Cappadocia tour page
-  
+
   console.log('🚗 Initializing Cappadocia Tour booking with Supabase');
-  
+
   // Get the original submit handler
   const originalSubmitHandler = tourForm.onsubmit;
-  
+
   // Override with Supabase-enabled handler
-  tourForm.addEventListener('submit', async function(e) {
+  tourForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
+
     console.log('📝 Cappadocia Tour form submitted');
-    
+
     // Get form data
     const formData = new FormData(tourForm);
     const name = formData.get('name')?.trim();
@@ -795,11 +816,11 @@ function initCappadociaTourBooking() {
     const phone = formData.get('phone')?.trim() || '';
     const hotel = formData.get('hotel')?.trim() || '';
     const tourType = document.getElementById('tour-type')?.value || 'Unknown Tour';
-    
+
     // Get calendar date
     const calendarInput = document.getElementById('calendar');
     const selectedDateValue = calendarInput?.value;
-    
+
     if (!selectedDateValue) {
       await Swal.fire({
         icon: 'warning',
@@ -809,15 +830,15 @@ function initCappadociaTourBooking() {
       });
       return;
     }
-    
+
     // Get country code
     const countryCodeSelect = $('#country-code');
     const countryCode = countryCodeSelect.val() || '+90';
-    
+
     // Get persons count
     const personsInput = document.getElementById('persons');
     const persons = personsInput ? parseInt(personsInput.value) : 1;
-    
+
     // Prepare booking data
     const bookingData = {
       name: name,
@@ -829,9 +850,9 @@ function initCappadociaTourBooking() {
       persons: persons,
       specialRequests: hotel ? `Hotel: ${hotel}` : null
     };
-    
+
     console.log('📦 Cappadocia Tour booking data:', bookingData);
-    
+
     // Show confirmation
     const result = await Swal.fire({
       title: 'Confirm Booking Request',
@@ -859,16 +880,16 @@ function initCappadociaTourBooking() {
       confirmButtonText: 'Send Request',
       cancelButtonText: 'Cancel'
     });
-    
+
     if (!result.isConfirmed) {
       return;
     }
-    
+
     // ========================================
     // SUPABASE: Save tour booking
     // ========================================
     console.log('💾 Saving Cappadocia Tour booking to Supabase...');
-    
+
     const supabaseData = {
       name: bookingData.name,
       email: bookingData.email,
@@ -880,16 +901,16 @@ function initCappadociaTourBooking() {
       specialRequests: bookingData.specialRequests,
       hotelName: hotel || null
     };
-    
+
     console.log('📤 Sending to Supabase:', supabaseData);
-    
+
     const saveResult = await saveBookingToSupabase(supabaseData);
-    
+
     if (saveResult.success) {
       console.log('✅ Cappadocia Tour booking saved successfully!');
       console.log('📊 Booking ID:', saveResult.data?.id);
       console.log('🎫 PNR Number:', saveResult.data?.pnr_number);
-      
+
       // Show success message with PNR
       await Swal.fire({
         icon: 'success',
@@ -906,14 +927,34 @@ function initCappadociaTourBooking() {
         confirmButtonText: 'Great!',
         confirmButtonColor: '#DCA47C'
       });
-      
+
+      emailjs
+        .send("service_pnm4t6u", "template_fyo9dtq", {
+          name: supabaseData.name,
+          email: supabaseData.email,
+          phone: supabaseData.phone || 'Not provided',
+          country_code: supabaseData.countryCode,
+          tour_type: supabaseData.tourType,
+          tour_date: supabaseData.date,
+          persons: supabaseData.persons,
+          special_requests: supabaseData.specialRequests || 'Not provided',
+          pnr_number: saveResult.data?.pnr_number || ''
+        })
+        .then(() => {
+          status.textContent = "✅ Rezervasyon alındı, e-posta gönderildi!";
+        })
+        .catch((err) => {
+          console.error(err);
+          status.textContent = "⚠️ E-posta gönderilemedi!";
+        });
+
       // Reset form
       tourForm.reset();
       if (calendarInput) calendarInput.value = '';
-      
+
     } else {
       console.error('❌ Failed to save booking:', saveResult.error);
-      
+
       // Show error message
       await Swal.fire({
         icon: 'error',
