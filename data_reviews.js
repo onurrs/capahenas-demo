@@ -92,11 +92,4 @@ data_reviews = [
         date: new Date('2023-10-22'),
         text: `Had a great experience. The travel agency that conducts the tour had an exceptional and friendly guide. Reasonably priced. Recommend this place to book your Cappadocia tours. Even the airport shuttle service is good. Thank you Mr. Fatih.`
     },
-    {
-        author_name: "Capahenas Travel Agency",
-        profile_photo: "images/favicon.png",
-        rating: 5,
-        date: new Date(),
-        text: `To see more reviews, please visit our Google Reviews page. We value our customers' feedback and strive to provide the best service possible. Your satisfaction is our priority!`
-    },
 ];
